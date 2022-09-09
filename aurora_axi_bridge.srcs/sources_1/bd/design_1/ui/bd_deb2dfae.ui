@@ -1,0 +1,48 @@
+{
+   "ActiveEmotionalView":"No Loops",
+   "Default View_ScaleFactor":"1.0",
+   "Default View_TopLeft":"-358,-237",
+   "DisplayTieOff":"1",
+   "ExpandedHierarchyInLayout":"",
+   "No Loops_ExpandedHierarchyInLayout":"",
+   "No Loops_Layout":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
+#  -string -flagsOSRD
+preplace port AXI_STR_TXD -pg 1 -lvl 3 -x 1000 -y 60 -defaultsOSRD
+preplace port AXI_STR_RXD -pg 1 -lvl 0 -x -20 -y 60 -defaultsOSRD
+preplace port S_AXI -pg 1 -lvl 0 -x -20 -y 120 -defaultsOSRD
+preplace port S_AXI1 -pg 1 -lvl 3 -x 1000 -y 300 -defaultsOSRD
+preplace port port-id_s_axi_aclk -pg 1 -lvl 0 -x -20 -y 140 -defaultsOSRD
+preplace port port-id_s_axi_aresetn -pg 1 -lvl 0 -x -20 -y 160 -defaultsOSRD
+preplace inst client_fifo -pg 1 -lvl 2 -x 700 -y 60 -swap {23 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 0 24 25 26 27 28 29 30 31 32} -defaultsOSRD -pinDir S_AXI left -pinY S_AXI 60L -pinDir AXI_STR_TXD right -pinY AXI_STR_TXD 0R -pinDir AXI_STR_RXD left -pinY AXI_STR_RXD 0L -pinDir interrupt right -pinY interrupt 20R -pinDir s_axi_aclk left -pinY s_axi_aclk 160L -pinDir s_axi_aresetn left -pinY s_axi_aresetn 180L -pinDir mm2s_prmry_reset_out_n right -pinY mm2s_prmry_reset_out_n 40R -pinDir s2mm_prmry_reset_out_n right -pinY s2mm_prmry_reset_out_n 60R
+preplace inst aximm_stream_client -pg 1 -lvl 1 -x 200 -y 120 -defaultsOSRD -pinDir M_AXI right -pinY M_AXI 0R -pinDir S_AXI left -pinY S_AXI 0L -pinDir clk left -pinY clk 20L -pinDir resetn left -pinY resetn 40L
+preplace netloc s_axi_aclk_1 1 0 2 20 240 340
+preplace netloc s_axi_aresetn_1 1 0 2 0 260 380
+preplace netloc Conn1 1 2 1 N 60
+preplace netloc Conn2 1 0 2 NJ 60 NJ
+preplace netloc Conn3 1 0 1 NJ 120
+preplace netloc aximm_stream_client_M_AXI 1 1 2 360 360 900
+levelinfo -pg 1 -20 200 700 1000
+pagesize -pg 1 -db -bbox -sgen -170 0 1150 370
+",
+   "No Loops_ScaleFactor":"1.0",
+   "No Loops_TopLeft":"-220,-178",
+   "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
+#  -string -flagsOSRD
+preplace port AXI_STR_TXD -pg 1 -lvl 3 -x 650 -y 50 -defaultsOSRD
+preplace port AXI_STR_RXD -pg 1 -lvl 0 -x 0 -y 70 -defaultsOSRD
+preplace port S_AXI -pg 1 -lvl 0 -x 0 -y 130 -defaultsOSRD
+preplace port port-id_s_axi_aclk -pg 1 -lvl 0 -x 0 -y 150 -defaultsOSRD
+preplace port port-id_s_axi_aresetn -pg 1 -lvl 0 -x 0 -y 170 -defaultsOSRD
+preplace inst client_fifo -pg 1 -lvl 2 -x 470 -y 80 -defaultsOSRD
+preplace inst aximm_stream_client -pg 1 -lvl 1 -x 180 -y 150 -defaultsOSRD
+preplace netloc s_axi_aclk_1 1 0 2 50 230 300J
+preplace netloc s_axi_aresetn_1 1 0 2 40 240 310J
+preplace netloc Conn1 1 2 1 N 50
+preplace netloc Conn2 1 0 2 NJ 70 NJ
+preplace netloc aximm_stream_client_M_AXI 1 1 1 290 50n
+preplace netloc Conn3 1 0 1 NJ 130
+levelinfo -pg 1 0 180 470 650
+pagesize -pg 1 -db -bbox -sgen -150 0 780 250
+"
+}
+0

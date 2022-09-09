@@ -1,0 +1,37 @@
+{
+   "ActiveEmotionalView":"No Loops",
+   "Default View_ScaleFactor":"1.0",
+   "Default View_TopLeft":"-467,-609",
+   "DisplayTieOff":"1",
+   "ExpandedHierarchyInLayout":"",
+   "No Loops_ExpandedHierarchyInLayout":"",
+   "No Loops_Layout":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
+#  -string -flagsOSRD
+preplace port port-id_ext_clock -pg 1 -lvl 0 -x 0 -y 20 -defaultsOSRD
+preplace port port-id_ext_resetn -pg 1 -lvl 0 -x 0 -y 100 -defaultsOSRD
+preplace port port-id_sysclock -pg 1 -lvl 2 -x 410 -y 20 -defaultsOSRD
+preplace portBus peripheral_aresetn -pg 1 -lvl 2 -x 410 -y 80 -defaultsOSRD
+preplace inst system_reset -pg 1 -lvl 1 -x 210 -y 80 -swap {0 1 2 3 4 6 7 8 9 5} -defaultsOSRD -pinDir slowest_sync_clk left -pinY slowest_sync_clk 0L -pinDir ext_reset_in left -pinY ext_reset_in 20L -pinDir aux_reset_in left -pinY aux_reset_in 40L -pinDir mb_debug_sys_rst left -pinY mb_debug_sys_rst 60L -pinDir dcm_locked left -pinY dcm_locked 80L -pinDir mb_reset right -pinY mb_reset 20R -pinBusDir bus_struct_reset right -pinBusY bus_struct_reset 40R -pinBusDir peripheral_reset right -pinBusY peripheral_reset 60R -pinBusDir interconnect_aresetn right -pinBusY interconnect_aresetn 80R -pinBusDir peripheral_aresetn right -pinBusY peripheral_aresetn 0R
+preplace netloc slowest_sync_clk_0_1 1 0 2 20 20 NJ
+preplace netloc ext_reset_in_0_1 1 0 1 NJ 100
+preplace netloc system_reset_peripheral_aresetn 1 1 1 NJ 80
+levelinfo -pg 1 0 210 410
+pagesize -pg 1 -db -bbox -sgen -130 0 630 220
+",
+   "No Loops_ScaleFactor":"1.0",
+   "No Loops_TopLeft":"-457,-254",
+   "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
+#  -string -flagsOSRD
+preplace port port-id_ext_clock -pg 1 -lvl 0 -x -10 -y -250 -defaultsOSRD
+preplace port port-id_ext_resetn -pg 1 -lvl 0 -x -10 -y -230 -defaultsOSRD
+preplace port port-id_sysclock -pg 1 -lvl 2 -x 400 -y -360 -defaultsOSRD
+preplace portBus peripheral_aresetn -pg 1 -lvl 2 -x 400 -y -170 -defaultsOSRD
+preplace inst system_reset -pg 1 -lvl 1 -x 200 -y -210 -defaultsOSRD
+preplace netloc slowest_sync_clk_0_1 1 0 2 10 -360 N
+preplace netloc ext_reset_in_0_1 1 0 1 N -230
+preplace netloc system_reset_peripheral_aresetn 1 1 1 N -170
+levelinfo -pg 1 -10 200 400
+pagesize -pg 1 -db -bbox -sgen -140 -380 620 200
+"
+}
+

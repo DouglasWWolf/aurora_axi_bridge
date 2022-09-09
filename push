@@ -1,0 +1,14 @@
+export project=aurora_axi_bridge
+export folder=.
+
+git add ${folder}/${project}.gen
+git add ${folder}/${project}.hw
+git add ${folder}/${project}.ip_user_files
+git add ${folder}/${project}.sim
+git add ${folder}/${project}.srcs
+git add ${folder}/${project}.xpr
+
+git add src xdc README.md push
+
+git commit -m "No commit message"
+git push origin main

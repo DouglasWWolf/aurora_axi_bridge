@@ -1,0 +1,45 @@
+{
+   "ActiveEmotionalView":"No Loops",
+   "Default View_ScaleFactor":"1.0",
+   "Default View_TopLeft":"-466,-248",
+   "DisplayTieOff":"1",
+   "ExpandedHierarchyInLayout":"",
+   "No Loops_ExpandedHierarchyInLayout":"",
+   "No Loops_Layout":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
+#  -string -flagsOSRD
+preplace port UART -pg 1 -lvl 3 -x 540 -y 120 -defaultsOSRD
+preplace port M_AXI -pg 1 -lvl 3 -x 540 -y 60 -defaultsOSRD
+preplace port port-id_s_axi_aclk -pg 1 -lvl 0 -x 0 -y 120 -defaultsOSRD
+preplace port port-id_s_axi_aresetn -pg 1 -lvl 0 -x 0 -y 140 -defaultsOSRD
+preplace inst control_uart -pg 1 -lvl 2 -x 400 -y 120 -swap {0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 22 23 21} -defaultsOSRD -pinDir S_AXI left -pinY S_AXI 0L -pinDir UART right -pinY UART 0R -pinDir s_axi_aclk left -pinY s_axi_aclk 80L -pinDir s_axi_aresetn left -pinY s_axi_aresetn 100L -pinDir interrupt left -pinY interrupt 20L
+preplace inst axi_uart_bridge -pg 1 -lvl 1 -x 160 -y 60 -defaultsOSRD -pinDir M_AXI right -pinY M_AXI 0R -pinDir M_UART right -pinY M_UART 60R -pinDir aclk left -pinY aclk 60L -pinDir aresetn left -pinY aresetn 80L -pinDir UART_INT right -pinY UART_INT 80R
+preplace netloc s_axi_aclk_1 1 0 2 40 200 NJ
+preplace netloc s_axi_aresetn_1 1 0 2 20 220 NJ
+preplace netloc control_uart_interrupt 1 1 1 NJ 140
+preplace netloc Conn2 1 2 1 NJ 120
+preplace netloc Conn1 1 1 2 NJ 60 NJ
+preplace netloc axi_uart_bridge_M_UART 1 1 1 N 120
+levelinfo -pg 1 0 160 400 540
+pagesize -pg 1 -db -bbox -sgen -150 0 640 280
+",
+   "No Loops_ScaleFactor":"1.0",
+   "No Loops_TopLeft":"-466,-223",
+   "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
+#  -string -flagsOSRD
+preplace port UART -pg 1 -lvl 3 -x 540 -y 140 -defaultsOSRD
+preplace port M_AXI -pg 1 -lvl 3 -x 540 -y 60 -defaultsOSRD
+preplace port port-id_s_axi_aclk -pg 1 -lvl 0 -x 0 -y 50 -defaultsOSRD
+preplace port port-id_s_axi_aresetn -pg 1 -lvl 0 -x 0 -y 70 -defaultsOSRD
+preplace inst control_uart -pg 1 -lvl 2 -x 400 -y 150 -defaultsOSRD
+preplace inst axi_uart_bridge -pg 1 -lvl 1 -x 160 -y 70 -defaultsOSRD
+preplace netloc s_axi_aclk_1 1 0 2 30 150 NJ
+preplace netloc s_axi_aresetn_1 1 0 2 20 170 NJ
+preplace netloc control_uart_interrupt 1 0 3 40 230 NJ 230 520
+preplace netloc Conn2 1 2 1 NJ 140
+preplace netloc Conn1 1 1 2 NJ 60 NJ
+preplace netloc axi_uart_bridge_M_UART 1 1 1 280 80n
+levelinfo -pg 1 0 160 400 540
+pagesize -pg 1 -db -bbox -sgen -150 0 630 240
+"
+}
+

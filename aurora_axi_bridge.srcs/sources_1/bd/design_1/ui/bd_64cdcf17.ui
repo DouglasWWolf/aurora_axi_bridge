@@ -1,0 +1,47 @@
+{
+   "ActiveEmotionalView":"No Loops",
+   "Default View_ScaleFactor":"1.0",
+   "Default View_TopLeft":"-375,-234",
+   "DisplayTieOff":"1",
+   "ExpandedHierarchyInLayout":"",
+   "No Loops_ExpandedHierarchyInLayout":"",
+   "No Loops_Layout":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
+#  -string -flagsOSRD
+preplace port AXI_STR_TXD -pg 1 -lvl 3 -x 680 -y 60 -defaultsOSRD
+preplace port AXI_STR_RXD -pg 1 -lvl 0 -x 0 -y 60 -defaultsOSRD
+preplace port MAXI_SYSTEM -pg 1 -lvl 3 -x 680 -y 220 -defaultsOSRD
+preplace port port-id_resetn -pg 1 -lvl 0 -x 0 -y 220 -defaultsOSRD
+preplace port port-id_clk -pg 1 -lvl 0 -x 0 -y 200 -defaultsOSRD
+preplace inst server_fifo -pg 1 -lvl 2 -x 480 -y 60 -swap {23 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 0 24 25 26 27 28 29 30 31 32} -defaultsOSRD -pinDir S_AXI left -pinY S_AXI 60L -pinDir AXI_STR_TXD right -pinY AXI_STR_TXD 0R -pinDir AXI_STR_RXD left -pinY AXI_STR_RXD 0L -pinDir interrupt right -pinY interrupt 20R -pinDir s_axi_aclk left -pinY s_axi_aclk 80L -pinDir s_axi_aresetn left -pinY s_axi_aresetn 100L -pinDir mm2s_prmry_reset_out_n right -pinY mm2s_prmry_reset_out_n 40R -pinDir s2mm_prmry_reset_out_n right -pinY s2mm_prmry_reset_out_n 60R
+preplace inst aximm_stream_server -pg 1 -lvl 1 -x 160 -y 120 -defaultsOSRD -pinDir M00_AXI right -pinY M00_AXI 0R -pinDir M01_AXI right -pinY M01_AXI 100R -pinDir clk left -pinY clk 80L -pinDir resetn left -pinY resetn 100L
+preplace netloc resetn_1 1 0 2 20 300 300J
+preplace netloc clk_1 1 0 2 40 280 280J
+preplace netloc Conn2 1 2 1 NJ 60
+preplace netloc Conn3 1 0 2 NJ 60 NJ
+preplace netloc aximm_over_stream_se_0_M00_AXI 1 1 1 N 120
+preplace netloc Conn1 1 1 2 NJ 220 NJ
+levelinfo -pg 1 0 160 480 680
+pagesize -pg 1 -db -bbox -sgen -150 0 830 310
+",
+   "No Loops_ScaleFactor":"1.0",
+   "No Loops_TopLeft":"-368,-209",
+   "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
+#  -string -flagsOSRD
+preplace port AXI_STR_TXD -pg 1 -lvl 3 -x 670 -y 60 -defaultsOSRD
+preplace port AXI_STR_RXD -pg 1 -lvl 0 -x 0 -y 80 -defaultsOSRD
+preplace port M01_AXI -pg 1 -lvl 3 -x 670 -y 180 -defaultsOSRD
+preplace port port-id_resetn -pg 1 -lvl 0 -x 0 -y 180 -defaultsOSRD
+preplace port port-id_clk -pg 1 -lvl 0 -x 0 -y 160 -defaultsOSRD
+preplace inst server_fifo -pg 1 -lvl 2 -x 470 -y 90 -defaultsOSRD
+preplace inst aximm_over_stream_se_0 -pg 1 -lvl 1 -x 150 -y 170 -defaultsOSRD
+preplace netloc resetn_1 1 0 2 20 250 290
+preplace netloc clk_1 1 0 2 30 240 280
+preplace netloc Conn2 1 2 1 NJ 60
+preplace netloc Conn3 1 0 2 NJ 80 NJ
+preplace netloc aximm_over_stream_se_0_M00_AXI 1 1 1 270 60n
+preplace netloc Conn1 1 1 2 NJ 180 NJ
+levelinfo -pg 1 0 150 470 670
+pagesize -pg 1 -db -bbox -sgen -150 0 820 260
+"
+}
+

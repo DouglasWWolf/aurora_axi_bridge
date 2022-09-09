@@ -1,0 +1,43 @@
+{
+   "ActiveEmotionalView":"No Loops",
+   "Default View_ScaleFactor":"1.0",
+   "Default View_TopLeft":"-718,-318",
+   "DisplayTieOff":"1",
+   "ExpandedHierarchyInLayout":"",
+   "No Loops_ExpandedHierarchyInLayout":"",
+   "No Loops_Layout":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
+#  -string -flagsOSRD
+preplace port AXI_STR_TXD -pg 1 -lvl 4 -x 980 -y 60 -defaultsOSRD
+preplace port AXI_STR_RXD -pg 1 -lvl 0 -x 0 -y 60 -defaultsOSRD
+preplace port GPIO_LED -pg 1 -lvl 4 -x 980 -y 330 -defaultsOSRD
+preplace port GPIO_SW -pg 1 -lvl 4 -x 980 -y 350 -defaultsOSRD
+preplace port port-id_sys_clock -pg 1 -lvl 0 -x 0 -y 120 -defaultsOSRD
+preplace port port-id_sys_resetn -pg 1 -lvl 0 -x 0 -y 140 -defaultsOSRD
+preplace inst clock_and_reset -pg 1 -lvl 1 -x 200 -y 120 -defaultsOSRD -pinDir ext_clock left -pinY ext_clock 0L -pinDir ext_resetn left -pinY ext_resetn 20L -pinBusDir peripheral_aresetn right -pinBusY peripheral_aresetn 0R -pinDir sysclock right -pinY sysclock 20R -pinBusDir interconnect_aresetn right -pinBusY interconnect_aresetn 100R
+preplace inst system_interconnect -pg 1 -lvl 2 -x 490 -y 200 -defaultsOSRD -pinDir S00_AXI right -pinY S00_AXI 0R -pinDir M00_AXI right -pinY M00_AXI 130R -pinDir aclk left -pinY aclk 0L -pinDir aresetn left -pinY aresetn 20L
+preplace inst demonstration_slave -pg 1 -lvl 3 -x 810 -y 330 -swap {0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 23 22} -defaultsOSRD -pinDir S_AXI left -pinY S_AXI 0L -pinDir GPIO right -pinY GPIO 0R -pinDir GPIO2 right -pinY GPIO2 20R -pinDir s_axi_aclk left -pinY s_axi_aclk 40L -pinDir s_axi_aresetn left -pinY s_axi_aresetn 20L
+preplace inst axi_qsfp_server -pg 1 -lvl 3 -x 810 -y 60 -defaultsOSRD -pinDir AXI_STR_TXD right -pinY AXI_STR_TXD 0R -pinDir AXI_STR_RXD left -pinY AXI_STR_RXD 0L -pinDir MAXI_SYSTEM left -pinY MAXI_SYSTEM 140L -pinDir resetn left -pinY resetn 160L -pinDir clk left -pinY clk 180L
+preplace netloc slowest_sync_clk_0_1 1 0 1 NJ 120
+preplace netloc ext_reset_in_0_1 1 0 1 NJ 140
+preplace netloc clock_and_reset_peripheral_aresetn 1 1 2 NJ 120 640
+preplace netloc clock_and_reset_sysclock 1 1 2 360 140 620
+preplace netloc clock_and_reset_interconnect_aresetn 1 1 1 N 220
+preplace netloc Conn3 1 3 1 NJ 330
+preplace netloc Conn4 1 3 1 NJ 350
+preplace netloc smartconnect_0_M00_AXI 1 2 1 N 330
+preplace netloc axi_qsfp_server_AXI_STR_TXD 1 3 1 NJ 60
+preplace netloc AXI_STR_RXD_1 1 0 3 NJ 60 NJ 60 NJ
+preplace netloc axi_qsfp_server_MAXI_SYSTEM 1 2 1 N 200
+levelinfo -pg 1 0 200 490 810 980
+pagesize -pg 1 -db -bbox -sgen -150 0 1130 430
+",
+   "No Loops_ScaleFactor":"1.0",
+   "No Loops_TopLeft":"-220,-148",
+   "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
+#  -string -flagsOSRD
+preplace inst clock_and_reset -pg 1 -lvl 1 -x 90 -y 50 -defaultsOSRD
+levelinfo -pg 1 0 90 180
+pagesize -pg 1 -db -bbox -sgen 0 0 180 90
+"
+}
+
