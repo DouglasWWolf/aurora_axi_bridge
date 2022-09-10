@@ -7,30 +7,35 @@
    "No Loops_ExpandedHierarchyInLayout":"",
    "No Loops_Layout":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
 #  -string -flagsOSRD
-preplace port UART -pg 1 -lvl 4 -x 990 -y 270 -defaultsOSRD
-preplace port AXI_STR_RXD -pg 1 -lvl 0 -x -20 -y 60 -defaultsOSRD
-preplace port AXI_STR_TXD -pg 1 -lvl 4 -x 990 -y 60 -defaultsOSRD
-preplace port port-id_sys_resetn -pg 1 -lvl 0 -x -20 -y 160 -defaultsOSRD
-preplace port port-id_sys_clock -pg 1 -lvl 0 -x -20 -y 140 -defaultsOSRD
-preplace inst clock_and_reset -pg 1 -lvl 1 -x 180 -y 140 -defaultsOSRD -pinDir ext_clock left -pinY ext_clock 0L -pinDir sysclock right -pinY sysclock 0R -pinBusDir interconnect_aresetn right -pinBusY interconnect_aresetn 20R -pinDir ext_resetn left -pinY ext_resetn 20L -pinBusDir peripheral_aresetn right -pinBusY peripheral_aresetn 190R
-preplace inst host_pc_interface -pg 1 -lvl 3 -x 790 -y 270 -defaultsOSRD -pinDir UART right -pinY UART 0R -pinDir M_AXI left -pinY M_AXI 0L -pinDir s_axi_aclk left -pinY s_axi_aclk 20L -pinDir s_axi_aresetn left -pinY s_axi_aresetn 40L
-preplace inst system_interconnect -pg 1 -lvl 2 -x 470 -y 140 -swap {20 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 0 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41} -defaultsOSRD -pinDir S00_AXI right -pinY S00_AXI 130R -pinDir M00_AXI right -pinY M00_AXI 0R -pinDir aclk left -pinY aclk 0L -pinDir aresetn left -pinY aresetn 20L
-preplace inst axi_qsfp_client -pg 1 -lvl 3 -x 790 -y 60 -defaultsOSRD -pinDir AXI_STR_TXD right -pinY AXI_STR_TXD 0R -pinDir AXI_STR_RXD left -pinY AXI_STR_RXD 0L -pinDir S_AXI left -pinY S_AXI 80L -pinDir s_axi_aclk left -pinY s_axi_aclk 100L -pinDir s_axi_aresetn left -pinY s_axi_aresetn 120L
-preplace netloc CLK100MHZ_1 1 0 1 NJ 140
-preplace netloc CPU_RESETN_1 1 0 1 NJ 160
-preplace netloc clock_and_reset_clk_100mhz 1 1 2 340 80 600
-preplace netloc clock_and_reset_interconnect_aresetn 1 1 1 N 160
-preplace netloc clock_and_reset_peripheral_aresetn 1 1 2 NJ 330 620
-preplace netloc Conn1 1 0 3 NJ 60 NJ 60 NJ
-preplace netloc Conn3 1 3 1 NJ 60
-preplace netloc host_interface_M_AXI 1 2 1 N 270
-preplace netloc host_interface_UART 1 3 1 NJ 270
-preplace netloc system_interconnect_M00_AXI 1 2 1 N 140
-levelinfo -pg 1 -20 180 470 790 990
-pagesize -pg 1 -db -bbox -sgen -170 0 1140 380
+preplace port UART -pg 1 -lvl 5 -x 1340 -y 340 -defaultsOSRD
+preplace port QSFP_RX -pg 1 -lvl 0 -x 0 -y 60 -defaultsOSRD
+preplace port QSFP_TX -pg 1 -lvl 5 -x 1340 -y 60 -defaultsOSRD
+preplace port port-id_sys_resetn -pg 1 -lvl 0 -x 0 -y 230 -defaultsOSRD
+preplace port port-id_sys_clock -pg 1 -lvl 0 -x 0 -y 210 -defaultsOSRD
+preplace port port-id_qsfp_clock -pg 1 -lvl 0 -x 0 -y 80 -defaultsOSRD
+preplace inst clock_and_reset -pg 1 -lvl 1 -x 180 -y 210 -defaultsOSRD -pinDir ext_clock left -pinY ext_clock 0L -pinDir sysclock right -pinY sysclock 0R -pinBusDir interconnect_aresetn right -pinBusY interconnect_aresetn 20R -pinDir ext_resetn left -pinY ext_resetn 20L -pinBusDir peripheral_aresetn right -pinBusY peripheral_aresetn 100R
+preplace inst host_pc_interface -pg 1 -lvl 4 -x 1120 -y 340 -defaultsOSRD -pinDir UART right -pinY UART 0R -pinDir M_AXI left -pinY M_AXI 0L -pinDir s_axi_aclk left -pinY s_axi_aclk 20L -pinDir s_axi_aresetn left -pinY s_axi_aresetn 40L
+preplace inst system_interconnect -pg 1 -lvl 2 -x 470 -y 140 -defaultsOSRD -pinDir S00_AXI right -pinY S00_AXI 0R -pinDir M00_AXI right -pinY M00_AXI 90R -pinDir aclk left -pinY aclk 70L -pinDir aresetn left -pinY aresetn 90L
+preplace inst axi_qsfp_client -pg 1 -lvl 3 -x 760 -y 200 -swap {5 1 2 3 4 0 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31} -defaultsOSRD -pinDir AXI_STR_TXD right -pinY AXI_STR_TXD 20R -pinDir AXI_STR_RXD right -pinY AXI_STR_RXD 0R -pinDir S_AXI left -pinY S_AXI 30L -pinDir s_axi_aclk left -pinY s_axi_aclk 90L -pinDir s_axi_aresetn left -pinY s_axi_aresetn 110L
+preplace inst aurora_lite -pg 1 -lvl 4 -x 1120 -y 60 -defaultsOSRD -pinDir GT_SERIAL_RX left -pinY GT_SERIAL_RX 0L -pinDir GT_SERIAL_TX right -pinY GT_SERIAL_TX 0R -pinDir USER_DATA_M_AXIS_RX left -pinY USER_DATA_M_AXIS_RX 140L -pinDir USER_DATA_S_AXIS_TX left -pinY USER_DATA_S_AXIS_TX 160L -pinDir GT_DIFF_REFCLK1 left -pinY GT_DIFF_REFCLK1 180L -pinDir user_clk_out right -pinY user_clk_out 20R
+preplace netloc CLK100MHZ_1 1 0 1 NJ 210
+preplace netloc CPU_RESETN_1 1 0 1 NJ 230
+preplace netloc clock_and_reset_clk_100mhz 1 1 3 340 290 620 360 NJ
+preplace netloc clock_and_reset_interconnect_aresetn 1 1 1 N 230
+preplace netloc clock_and_reset_peripheral_aresetn 1 1 3 NJ 310 600 380 NJ
+preplace netloc GT_DIFF_REFCLK1_0_1 1 0 4 NJ 80 NJ 80 NJ 80 920J
+preplace netloc host_interface_M_AXI 1 2 2 NJ 140 900
+preplace netloc host_interface_UART 1 4 1 NJ 340
+preplace netloc system_interconnect_M00_AXI 1 2 1 N 230
+preplace netloc axi_qsfp_client_AXI_STR_TXD 1 3 1 N 220
+preplace netloc AXI_STR_RXD_1 1 3 1 N 200
+preplace netloc aurora_lite_0_GT_SERIAL_TX 1 4 1 NJ 60
+preplace netloc AXI_STR_RXD_2 1 0 4 NJ 60 NJ 60 NJ 60 NJ
+levelinfo -pg 1 0 180 470 760 1120 1340
+pagesize -pg 1 -db -bbox -sgen -130 0 1460 430
 ",
-   "No Loops_ScaleFactor":"1.0",
-   "No Loops_TopLeft":"-225,-174",
+   "No Loops_ScaleFactor":"0.89981",
+   "No Loops_TopLeft":"-124,-189",
    "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
 #  -string -flagsOSRD
 preplace port M_AXI -pg 1 -lvl 2 -x 910 -y 50 -defaultsOSRD

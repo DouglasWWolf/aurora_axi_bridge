@@ -288,12 +288,11 @@ module aximm_over_stream_client #
                 // If we're writing to a valid data register, send the write-request packet
                 else if (reg_windex >= 64 && reg_windex < (64 + VECTOR_COUNT)) begin
                     write_req_msg[PF_TYPE*32 +:32] <= PKT_TYPE_WRITE;
-                    write_req_msg[PF_ADRH*32 +:32] <= vector[vector_windex][63:32];
-                    write_req_msg[PF_ADRL*32 +:32] <= vector[vector_windex][31:00];
+                    write_req_msg[PF_ADRL*32 +:64] <= vector[vector_windex];
                     write_req_msg[PF_DATA*32 +:32] <= ashi_wdata;
-                    prior_write_rsp           <= rcvd_write_rsp;
-                    send_write_req            <= send_write_req + 1;
-                    slv_write_state           <= 2;
+                    prior_write_rsp                <= rcvd_write_rsp;
+                    send_write_req                 <= send_write_req + 1;
+                    slv_write_state                <= 2;
                 end 
 
                 // All other cases return a slave-error and go back to idle mode
@@ -381,8 +380,7 @@ module aximm_over_stream_client #
                 // If we're reading from a valid data register, go do that
                 else if (reg_rindex >= 64 && reg_rindex < (64 + VECTOR_COUNT)) begin
                     read_req_msg[PF_TYPE*32 +:32] <= PKT_TYPE_READ;
-                    read_req_msg[PF_ADRH*32 +:32] <= vector[vector_rindex][63:32];
-                    read_req_msg[PF_ADRL*32 +:32] <= vector[vector_rindex][31:00];
+                    read_req_msg[PF_ADRL*32 +:64] <= vector[vector_rindex];
                     read_req_msg[PF_DATA*32 +:32] <= 0;
                     prior_read_rsp                <= rcvd_read_rsp;
                     send_read_req                 <= send_read_req + 1;

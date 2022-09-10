@@ -22,7 +22,8 @@
         "system_interconnect": "",
         "axi_qsfp_client": {
           "aximm_stream_client": ""
-        }
+        },
+        "aurora_lite": ""
       },
       "global_clock": "",
       "ecd_board": {
@@ -106,12 +107,12 @@
             "vlnv_bus_definition": "xilinx.com:interface:uart:1.0",
             "vlnv": "xilinx.com:interface:uart_rtl:1.0"
           },
-          "AXI_STR_RXD": {
+          "QSFP_RX": {
             "mode": "Slave",
             "vlnv_bus_definition": "xilinx.com:interface:axis:1.0",
             "vlnv": "xilinx.com:interface:axis_rtl:1.0"
           },
-          "AXI_STR_TXD": {
+          "QSFP_TX": {
             "mode": "Master",
             "vlnv_bus_definition": "xilinx.com:interface:axis:1.0",
             "vlnv": "xilinx.com:interface:axis_rtl:1.0"
@@ -123,6 +124,10 @@
             "direction": "I"
           },
           "sys_clock": {
+            "type": "clk",
+            "direction": "I"
+          },
+          "qsfp_clock": {
             "type": "clk",
             "direction": "I"
           }
@@ -1304,19 +1309,355 @@
                 ]
               }
             }
+          },
+          "aurora_lite": {
+            "vlnv": "xilinx.com:module_ref:aurora_lite:1.0",
+            "xci_name": "design_1_aurora_lite_0_8",
+            "xci_path": "ip/design_1_aurora_lite_0_8/design_1_aurora_lite_0_8.xci",
+            "inst_hier_path": "sidewinder_board/aurora_lite",
+            "reference_info": {
+              "ref_type": "hdl",
+              "ref_name": "aurora_lite",
+              "boundary_crc": "0x0"
+            },
+            "interface_ports": {
+              "GT_SERIAL_RX": {
+                "mode": "Slave",
+                "vlnv_bus_definition": "xilinx.com:interface:axis:1.0",
+                "vlnv": "xilinx.com:interface:axis_rtl:1.0",
+                "parameters": {
+                  "TDATA_NUM_BYTES": {
+                    "value": "32",
+                    "value_src": "constant"
+                  },
+                  "TDEST_WIDTH": {
+                    "value": "0",
+                    "value_src": "constant"
+                  },
+                  "TID_WIDTH": {
+                    "value": "0",
+                    "value_src": "constant"
+                  },
+                  "TUSER_WIDTH": {
+                    "value": "0",
+                    "value_src": "constant"
+                  },
+                  "HAS_TREADY": {
+                    "value": "1",
+                    "value_src": "constant"
+                  },
+                  "HAS_TSTRB": {
+                    "value": "0",
+                    "value_src": "constant"
+                  },
+                  "HAS_TKEEP": {
+                    "value": "0",
+                    "value_src": "constant"
+                  },
+                  "HAS_TLAST": {
+                    "value": "1",
+                    "value_src": "constant"
+                  },
+                  "FREQ_HZ": {
+                    "value": "100000000",
+                    "value_src": "ip_prop"
+                  },
+                  "PHASE": {
+                    "value": "0.0",
+                    "value_src": "ip_prop"
+                  },
+                  "CLK_DOMAIN": {
+                    "value": "/global_clock_clk_out1",
+                    "value_src": "ip_prop"
+                  }
+                },
+                "port_maps": {
+                  "TDATA": {
+                    "physical_name": "GT_SERIAL_RX_TDATA",
+                    "direction": "I",
+                    "left": "255",
+                    "right": "0"
+                  },
+                  "TLAST": {
+                    "physical_name": "GT_SERIAL_RX_TLAST",
+                    "direction": "I"
+                  },
+                  "TVALID": {
+                    "physical_name": "GT_SERIAL_RX_TVALID",
+                    "direction": "I"
+                  },
+                  "TREADY": {
+                    "physical_name": "GT_SERIAL_RX_TREADY",
+                    "direction": "O"
+                  }
+                }
+              },
+              "GT_SERIAL_TX": {
+                "mode": "Master",
+                "vlnv_bus_definition": "xilinx.com:interface:axis:1.0",
+                "vlnv": "xilinx.com:interface:axis_rtl:1.0",
+                "parameters": {
+                  "TDATA_NUM_BYTES": {
+                    "value": "32",
+                    "value_src": "constant"
+                  },
+                  "TDEST_WIDTH": {
+                    "value": "0",
+                    "value_src": "constant"
+                  },
+                  "TID_WIDTH": {
+                    "value": "0",
+                    "value_src": "constant"
+                  },
+                  "TUSER_WIDTH": {
+                    "value": "0",
+                    "value_src": "constant"
+                  },
+                  "HAS_TREADY": {
+                    "value": "1",
+                    "value_src": "constant"
+                  },
+                  "HAS_TSTRB": {
+                    "value": "0",
+                    "value_src": "constant"
+                  },
+                  "HAS_TKEEP": {
+                    "value": "0",
+                    "value_src": "constant"
+                  },
+                  "HAS_TLAST": {
+                    "value": "1",
+                    "value_src": "constant"
+                  },
+                  "FREQ_HZ": {
+                    "value": "100000000",
+                    "value_src": "ip_prop"
+                  },
+                  "PHASE": {
+                    "value": "0.0",
+                    "value_src": "ip_prop"
+                  },
+                  "CLK_DOMAIN": {
+                    "value": "/global_clock_clk_out1",
+                    "value_src": "ip_prop"
+                  }
+                },
+                "port_maps": {
+                  "TDATA": {
+                    "physical_name": "GT_SERIAL_TX_TDATA",
+                    "direction": "O",
+                    "left": "255",
+                    "right": "0"
+                  },
+                  "TLAST": {
+                    "physical_name": "GT_SERIAL_TX_TLAST",
+                    "direction": "O"
+                  },
+                  "TVALID": {
+                    "physical_name": "GT_SERIAL_TX_TVALID",
+                    "direction": "O"
+                  },
+                  "TREADY": {
+                    "physical_name": "GT_SERIAL_TX_TREADY",
+                    "direction": "I"
+                  }
+                }
+              },
+              "USER_DATA_M_AXIS_RX": {
+                "mode": "Master",
+                "vlnv_bus_definition": "xilinx.com:interface:axis:1.0",
+                "vlnv": "xilinx.com:interface:axis_rtl:1.0",
+                "parameters": {
+                  "TDATA_NUM_BYTES": {
+                    "value": "32",
+                    "value_src": "constant"
+                  },
+                  "TDEST_WIDTH": {
+                    "value": "0",
+                    "value_src": "constant"
+                  },
+                  "TID_WIDTH": {
+                    "value": "0",
+                    "value_src": "constant"
+                  },
+                  "TUSER_WIDTH": {
+                    "value": "0",
+                    "value_src": "constant"
+                  },
+                  "HAS_TREADY": {
+                    "value": "1",
+                    "value_src": "constant"
+                  },
+                  "HAS_TSTRB": {
+                    "value": "0",
+                    "value_src": "constant"
+                  },
+                  "HAS_TKEEP": {
+                    "value": "0",
+                    "value_src": "constant"
+                  },
+                  "HAS_TLAST": {
+                    "value": "1",
+                    "value_src": "constant"
+                  },
+                  "FREQ_HZ": {
+                    "value": "100000000",
+                    "value_src": "ip_prop"
+                  },
+                  "PHASE": {
+                    "value": "0.0",
+                    "value_src": "ip_prop"
+                  },
+                  "CLK_DOMAIN": {
+                    "value": "/global_clock_clk_out1",
+                    "value_src": "ip_prop"
+                  }
+                },
+                "port_maps": {
+                  "TDATA": {
+                    "physical_name": "USER_DATA_M_AXIS_RX_TDATA",
+                    "direction": "O",
+                    "left": "255",
+                    "right": "0"
+                  },
+                  "TLAST": {
+                    "physical_name": "USER_DATA_M_AXIS_RX_TLAST",
+                    "direction": "O"
+                  },
+                  "TVALID": {
+                    "physical_name": "USER_DATA_M_AXIS_RX_TVALID",
+                    "direction": "O"
+                  },
+                  "TREADY": {
+                    "physical_name": "USER_DATA_M_AXIS_RX_TREADY",
+                    "direction": "I"
+                  }
+                }
+              },
+              "USER_DATA_S_AXIS_TX": {
+                "mode": "Slave",
+                "vlnv_bus_definition": "xilinx.com:interface:axis:1.0",
+                "vlnv": "xilinx.com:interface:axis_rtl:1.0",
+                "parameters": {
+                  "TDATA_NUM_BYTES": {
+                    "value": "32",
+                    "value_src": "constant"
+                  },
+                  "TDEST_WIDTH": {
+                    "value": "0",
+                    "value_src": "constant"
+                  },
+                  "TID_WIDTH": {
+                    "value": "0",
+                    "value_src": "constant"
+                  },
+                  "TUSER_WIDTH": {
+                    "value": "0",
+                    "value_src": "constant"
+                  },
+                  "HAS_TREADY": {
+                    "value": "1",
+                    "value_src": "constant"
+                  },
+                  "HAS_TSTRB": {
+                    "value": "0",
+                    "value_src": "constant"
+                  },
+                  "HAS_TKEEP": {
+                    "value": "0",
+                    "value_src": "constant"
+                  },
+                  "HAS_TLAST": {
+                    "value": "1",
+                    "value_src": "constant"
+                  },
+                  "FREQ_HZ": {
+                    "value": "100000000",
+                    "value_src": "ip_prop"
+                  },
+                  "PHASE": {
+                    "value": "0.0",
+                    "value_src": "ip_prop"
+                  },
+                  "CLK_DOMAIN": {
+                    "value": "/global_clock_clk_out1",
+                    "value_src": "ip_prop"
+                  }
+                },
+                "port_maps": {
+                  "TDATA": {
+                    "physical_name": "USER_DATA_S_AXIS_TX_TDATA",
+                    "direction": "I",
+                    "left": "255",
+                    "right": "0"
+                  },
+                  "TLAST": {
+                    "physical_name": "USER_DATA_S_AXIS_TX_TLAST",
+                    "direction": "I"
+                  },
+                  "TVALID": {
+                    "physical_name": "USER_DATA_S_AXIS_TX_TVALID",
+                    "direction": "I"
+                  },
+                  "TREADY": {
+                    "physical_name": "USER_DATA_S_AXIS_TX_TREADY",
+                    "direction": "O"
+                  }
+                }
+              }
+            },
+            "ports": {
+              "GT_DIFF_REFCLK1": {
+                "type": "clk",
+                "direction": "I",
+                "parameters": {
+                  "ASSOCIATED_BUSIF": {
+                    "value": "USER_DATA_S_AXIS_TX:USER_DATA_M_AXIS_RX:GT_SERIAL_TX:GT_SERIAL_RX",
+                    "value_src": "constant"
+                  },
+                  "FREQ_HZ": {
+                    "value": "100000000",
+                    "value_src": "ip_prop"
+                  },
+                  "PHASE": {
+                    "value": "0.0",
+                    "value_src": "ip_prop"
+                  },
+                  "CLK_DOMAIN": {
+                    "value": "/global_clock_clk_out1",
+                    "value_src": "ip_prop"
+                  }
+                }
+              },
+              "user_clk_out": {
+                "direction": "O"
+              }
+            }
           }
         },
         "interface_nets": {
-          "Conn1": {
+          "AXI_STR_RXD_1": {
             "interface_ports": [
-              "AXI_STR_RXD",
-              "axi_qsfp_client/AXI_STR_RXD"
+              "axi_qsfp_client/AXI_STR_RXD",
+              "aurora_lite/USER_DATA_M_AXIS_RX"
             ]
           },
-          "Conn3": {
+          "AXI_STR_RXD_2": {
             "interface_ports": [
-              "AXI_STR_TXD",
-              "axi_qsfp_client/AXI_STR_TXD"
+              "QSFP_RX",
+              "aurora_lite/GT_SERIAL_RX"
+            ]
+          },
+          "aurora_lite_0_GT_SERIAL_TX": {
+            "interface_ports": [
+              "QSFP_TX",
+              "aurora_lite/GT_SERIAL_TX"
+            ]
+          },
+          "axi_qsfp_client_AXI_STR_TXD": {
+            "interface_ports": [
+              "axi_qsfp_client/AXI_STR_TXD",
+              "aurora_lite/USER_DATA_S_AXIS_TX"
             ]
           },
           "host_interface_M_AXI": {
@@ -1349,6 +1690,12 @@
             "ports": [
               "sys_resetn",
               "clock_and_reset/ext_resetn"
+            ]
+          },
+          "GT_DIFF_REFCLK1_0_1": {
+            "ports": [
+              "qsfp_clock",
+              "aurora_lite/GT_DIFF_REFCLK1"
             ]
           },
           "clock_and_reset_clk_100mhz": {
@@ -1420,12 +1767,12 @@
       },
       "ecd_board": {
         "interface_ports": {
-          "AXI_STR_TXD": {
+          "QSFP_TX": {
             "mode": "Master",
             "vlnv_bus_definition": "xilinx.com:interface:axis:1.0",
             "vlnv": "xilinx.com:interface:axis_rtl:1.0"
           },
-          "AXI_STR_RXD": {
+          "QSFP_RX": {
             "mode": "Slave",
             "vlnv_bus_definition": "xilinx.com:interface:axis:1.0",
             "vlnv": "xilinx.com:interface:axis_rtl:1.0"
@@ -2077,7 +2424,7 @@
         "interface_nets": {
           "AXI_STR_RXD_1": {
             "interface_ports": [
-              "AXI_STR_RXD",
+              "QSFP_RX",
               "axi_qsfp_server/AXI_STR_RXD"
             ]
           },
@@ -2095,7 +2442,7 @@
           },
           "axi_qsfp_server_AXI_STR_TXD": {
             "interface_ports": [
-              "AXI_STR_TXD",
+              "QSFP_TX",
               "axi_qsfp_server/AXI_STR_TXD"
             ]
           },
@@ -2152,8 +2499,8 @@
     "interface_nets": {
       "AXI_STR_RXD_1": {
         "interface_ports": [
-          "sidewinder_board/AXI_STR_RXD",
-          "ecd_board/AXI_STR_TXD"
+          "sidewinder_board/QSFP_RX",
+          "ecd_board/QSFP_TX"
         ]
       },
       "ecd_board_GPIO2_0": {
@@ -2170,8 +2517,8 @@
       },
       "sidewinder_board_AXI_STR_TXD": {
         "interface_ports": [
-          "sidewinder_board/AXI_STR_TXD",
-          "ecd_board/AXI_STR_RXD"
+          "sidewinder_board/QSFP_TX",
+          "ecd_board/QSFP_RX"
         ]
       },
       "sidewinder_board_UART": {
@@ -2186,7 +2533,8 @@
         "ports": [
           "global_clock/clk_out_100mhz",
           "sidewinder_board/sys_clock",
-          "ecd_board/sys_clock"
+          "ecd_board/sys_clock",
+          "sidewinder_board/qsfp_clock"
         ]
       },
       "CLK100MHZ_2": {
