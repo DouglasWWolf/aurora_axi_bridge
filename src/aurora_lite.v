@@ -14,16 +14,6 @@ module aurora_lite
     (* X_INTERFACE_PARAMETER = "ASSOCIATED_BUSIF USER_DATA_S_AXIS_TX:USER_DATA_M_AXIS_RX:GT_SERIAL_TX:GT_SERIAL_RX" *)
     input GT_DIFF_REFCLK1,
 
-    (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 user_clk_out CLK" *)          
-    output user_clk_out,
-
-    (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 reset_pb RST" *)
-    (* X_INTERFACE_PARAMETER = "POLARITY ACTIVE_HIGH" *)
-    input reset_pb,
-
-    (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 reset_pb RST" *)
-    (* X_INTERFACE_PARAMETER = "POLARITY ACTIVE_HIGH" *)
-    output sys_reset_out,
 
     //=================================  AXI Input Stream interface  ================================
     input [255:0] USER_DATA_S_AXIS_TX_TDATA,
@@ -62,11 +52,6 @@ module aurora_lite
 
 
 );
-    // Connect the output clock to the input clock
-    assign user_clk_out = GT_DIFF_REFCLK1;
-
-    // Connect the output reset to the input reset
-    assign sys_reset_out = reset_pb;
 
     always @(posedge GT_DIFF_REFCLK1) begin
 

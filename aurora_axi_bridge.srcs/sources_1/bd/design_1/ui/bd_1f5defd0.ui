@@ -2,9 +2,33 @@
    "ActiveEmotionalView":"No Loops",
    "Default View_ScaleFactor":"1.0",
    "Default View_TopLeft":"-190,-217",
+   "Display-PortTypeClock":"true",
+   "Display-PortTypeInterrupt":"true",
+   "Display-PortTypeOthers":"true",
+   "Display-PortTypeReset":"true",
    "DisplayTieOff":"1",
    "ExpandedHierarchyInLayout":"",
+   "Interfaces View_ExpandedHierarchyInLayout":"",
+   "Interfaces View_Layers":"/sidewinder_board/clock_and_reset/system_reset_interconnect_aresetn:false|/CLK100MHZ_2:false|/sidewinder_board/clock_and_reset/system_reset_peripheral_reset:false|/ecd_board/clock_and_reset/system_reset_interconnect_aresetn:false|/ecd_board/clock_and_reset/system_reset_peripheral_reset:false|/sidewinder_board/clock_and_reset/system_reset_peripheral_aresetn:false|/ecd_board/clock_and_reset/system_reset_peripheral_aresetn:false|/sidewinder_board/host_pc_interface/control_uart_interrupt:false|/CPU_RESETN_1:false|/CLK100MHZ_1:false|",
+   "Interfaces View_Layout":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
+#  -string -flagsOSRD
+preplace port UART -pg 1 -lvl 3 -x 520 -y 70 -defaultsOSRD
+preplace port GPIO_LED -pg 1 -lvl 3 -x 520 -y 150 -defaultsOSRD
+preplace port GPIO_SW -pg 1 -lvl 3 -x 520 -y 170 -defaultsOSRD
+preplace inst sidewinder_board -pg 1 -lvl 1 -x 140 -y 80 -defaultsOSRD
+preplace inst ecd_board -pg 1 -lvl 2 -x 380 -y 150 -defaultsOSRD
+preplace netloc AXI_STR_RXD_1 1 0 3 20 10 NJ 10 500
+preplace netloc ecd_board_GPIO2_0 1 2 1 NJ 170
+preplace netloc ecd_board_GPIO_0 1 2 1 NJ 150
+preplace netloc sidewinder_board_AXI_STR_TXD 1 1 1 260 90n
+preplace netloc sidewinder_board_UART 1 1 2 NJ 70 NJ
+levelinfo -pg 1 0 140 380 520
+pagesize -pg 1 -db -bbox -sgen 0 0 640 220
+",
+   "Interfaces View_ScaleFactor":"1.0",
+   "Interfaces View_TopLeft":"-390,-254",
    "No Loops_ExpandedHierarchyInLayout":"",
+   "No Loops_Layers":"/sidewinder_board/clock_and_reset/system_reset_interconnect_aresetn:true|/CLK100MHZ_2:true|/sidewinder_board/clock_and_reset/system_reset_peripheral_reset:true|/ecd_board/clock_and_reset/system_reset_interconnect_aresetn:true|/ecd_board/clock_and_reset/system_reset_peripheral_reset:true|/sidewinder_board/clock_and_reset/system_reset_peripheral_aresetn:true|/ecd_board/clock_and_reset/system_reset_peripheral_aresetn:true|/sidewinder_board/host_pc_interface/control_uart_interrupt:true|/CPU_RESETN_1:true|/CLK100MHZ_1:true|",
    "No Loops_Layout":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
 #  -string -flagsOSRD
 preplace port UART -pg 1 -lvl 4 -x 800 -y 190 -defaultsOSRD
