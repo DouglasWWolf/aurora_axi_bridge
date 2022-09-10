@@ -15,14 +15,14 @@ preplace port port-id_s_axi_aresetn -pg 1 -lvl 0 -x -30 -y 120 -defaultsOSRD
 preplace inst aximm_stream_client -pg 1 -lvl 1 -x 150 -y 60 -defaultsOSRD -pinDir AXIS_RX left -pinY AXIS_RX 0L -pinDir AXIS_TX right -pinY AXIS_TX 0R -pinDir S_AXI left -pinY S_AXI 20L -pinDir clk left -pinY clk 40L -pinDir resetn left -pinY resetn 60L
 preplace netloc s_axi_aclk_1 1 0 1 NJ 100
 preplace netloc s_axi_aresetn_1 1 0 1 NJ 120
+preplace netloc AXI_STR_RXD_1 1 0 1 NJ 60
 preplace netloc Conn3 1 0 1 NJ 80
 preplace netloc aximm_stream_client_AXIS_TX 1 1 1 N 60
-preplace netloc AXI_STR_RXD_1 1 0 1 NJ 60
 levelinfo -pg 1 -30 150 330
 pagesize -pg 1 -db -bbox -sgen -180 0 480 180
 ",
    "No Loops_ScaleFactor":"1.0",
-   "No Loops_TopLeft":"-560,-259",
+   "No Loops_TopLeft":"-560,-273",
    "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
 #  -string -flagsOSRD
 preplace port AXI_STR_TXD -pg 1 -lvl 3 -x 940 -y 50 -defaultsOSRD

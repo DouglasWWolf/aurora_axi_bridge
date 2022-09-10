@@ -116,8 +116,8 @@ module aximm_over_stream_client #
 
     // The fields in a packet
     localparam PF_TYPE = 0;  // Packet type
-    localparam PF_ADRH = 1;  // High word of address
-    localparam PF_ADRL = 2;  // Low word of address
+    localparam PF_ADRL = 1;  // Low word of address
+    localparam PF_ADRH = 2;  // High word of address
     localparam PF_DATA = 3;  // Read or write data
     localparam PF_RESP = 4;  // AXI_RRESP or AXI_BRESP
 
