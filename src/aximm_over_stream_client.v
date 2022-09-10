@@ -10,6 +10,7 @@
 
 `define M_AXI_ADDR_WIDTH 32
 `define M_AXI_DATA_WIDTH 32
+`define AXIS_DATA_WIDTH 256
 
 module aximm_over_stream_client #
 (
@@ -51,38 +52,19 @@ module aximm_over_stream_client #
     //===============================================================================================
 
 
+    //========================  AXI Stream interface for sending requests  ==========================
+    output reg [`AXIS_DATA_WIDTH-1:0] AXIS_TX_TDATA,
+    output reg                        AXIS_TX_TVALID,
+    output reg                        AXIS_TX_TLAST,
+    input                             AXIS_TX_TREADY,
+    //===============================================================================================
 
 
-    //============================  An AXI-Lite Master Interface  ===================================
-
-    // "Specify write address"        -- Master --    -- Slave --
-    output[`M_AXI_ADDR_WIDTH-1:0]     M_AXI_AWADDR,   
-    output                            M_AXI_AWVALID,  
-    output[2:0]                       M_AXI_AWPROT,
-    input                                             M_AXI_AWREADY,
-
-    // "Write Data"                   -- Master --    -- Slave --
-    output[`M_AXI_DATA_WIDTH-1:0]     M_AXI_WDATA,      
-    output                            M_AXI_WVALID,
-    output[(`M_AXI_DATA_WIDTH/8)-1:0] M_AXI_WSTRB,
-    input                                             M_AXI_WREADY,
-
-    // "Send Write Response"          -- Master --    -- Slave --
-    input[1:0]                                        M_AXI_BRESP,
-    input                                             M_AXI_BVALID,
-    output                            M_AXI_BREADY,
-
-    // "Specify read address"         -- Master --    -- Slave --
-    output[`M_AXI_ADDR_WIDTH-1:0]     M_AXI_ARADDR,     
-    output                            M_AXI_ARVALID,
-    output[2:0]                       M_AXI_ARPROT,     
-    input                                             M_AXI_ARREADY,
-
-    // "Read data back to master"     -- Master --    -- Slave --
-    input[`M_AXI_DATA_WIDTH-1:0]                       M_AXI_RDATA,
-    input                                              M_AXI_RVALID,
-    input[1:0]                                         M_AXI_RRESP,
-    output                            M_AXI_RREADY
+    //========================  AXI Stream interface for receiving responses  =======================
+    input [`AXIS_DATA_WIDTH-1:0] AXIS_RX_TDATA,
+    input                        AXIS_RX_TVALID,
+    input                        AXIS_RX_TLAST,
+    output reg                   AXIS_RX_TREADY
     //===============================================================================================
 
  );
@@ -90,6 +72,7 @@ module aximm_over_stream_client #
     // Some convenience declarations
     localparam M_AXI_ADDR_WIDTH = `M_AXI_ADDR_WIDTH;
     localparam M_AXI_DATA_WIDTH = `M_AXI_DATA_WIDTH;
+    localparam AXIS_DATA_WIDTH  = `AXIS_DATA_WIDTH;
 
 
     //===============================================================================================
@@ -112,27 +95,6 @@ module aximm_over_stream_client #
     //===============================================================================================
 
 
-    //===============================================================================================
-    // We'll communicate with the AXI4-Lite Master core with these signals.
-    //===============================================================================================
-
-    // AXI Master Control Interface for AXI writes
-    reg [M_AXI_ADDR_WIDTH-1:0] amci_waddr;
-    reg [M_AXI_DATA_WIDTH-1:0] amci_wdata;
-    reg                        amci_write;
-    wire[                 1:0] amci_wresp;
-    wire                       amci_widle;
-   
-    // AXI Master Control Interface for AXI reads
-    reg [M_AXI_ADDR_WIDTH-1:0] amci_raddr;
-    reg                        amci_read;
-    wire[M_AXI_DATA_WIDTH-1:0] amci_rdata;
-    wire[                 1:0] amci_rresp;
-    wire                       amci_ridle;
-
-    //===============================================================================================
-
-
     // The state of our two state machines
     reg[2:0] slv_read_state, slv_write_state;
 
@@ -147,11 +109,7 @@ module aximm_over_stream_client #
 
     // Our slave's register set will occupy 9 bits of address space
     localparam ADDR_MASK = 9'h1FF;
-
-    // These describe the length of a packet
-    localparam PACKET_LENGTH_WORDS = 8;
-    localparam PACKET_LENGTH_BYTES = PACKET_LENGTH_WORDS * 4;
-
+    
     // Packet types
     localparam PKT_TYPE_READ  = 1;
     localparam PKT_TYPE_WRITE = 2;
@@ -166,19 +124,102 @@ module aximm_over_stream_client #
     // We're going to store a 64-bit address for each vector we support
     reg[63:0] vector[0:VECTOR_COUNT-1];
 
-    // These two packets hold a write request and a read request
-    reg[31:0] write_req_packet[0:PACKET_LENGTH_WORDS-1];
-    reg[31:0] read_req_packet [0:PACKET_LENGTH_WORDS-1];
+    // These fields get filled in when a response message is received
+    reg[31:0] axi_rdata;
+    reg[ 1:0] axi_rresp, axi_wresp;
 
-    // These two packets hold a write response and a read response
-    reg[31:0] write_rsp_packet[0:PACKET_LENGTH_WORDS-1];
-    reg[31:0] read_rsp_packet [0:PACKET_LENGTH_WORDS-1];
+    // Messages that are sent out the stream to request an AXI read or an AXI write
+    reg[AXIS_DATA_WIDTH-1:0] read_req_msg, write_req_msg;
 
     // The request to send a read or write packet will be signaled by one of these changing
     reg[1:0] send_write_req, send_read_req;
 
     // The notification of a received read or write response is signaled by one of these changing
     reg[1:0] rcvd_write_rsp, rcvd_read_rsp;
+
+    
+    //===============================================================================================
+    // State machine that transmits read or write requests across the stream interface
+    //===============================================================================================
+    reg      trsm_state;
+    reg[1:0] prior_send_read_req;
+    reg[1:0] prior_send_write_req;
+    //===============================================================================================
+    always @(posedge clk) begin
+
+        // If we're in reset, initialize important registers
+        if (resetn == 0) begin
+            trsm_state           <= 0;
+            prior_send_write_req <= 0;
+            prior_send_read_req  <= 0;
+            AXIS_TX_TVALID       <= 0;
+
+        end else case (trsm_state)
+        
+                // If we've been asked to send a write-request, do so
+            0:  if (send_write_req != prior_send_write_req) begin
+                    prior_send_write_req <= send_write_req;
+                    AXIS_TX_TDATA        <= write_req_msg;
+                    AXIS_TX_TLAST        <= 1;
+                    AXIS_TX_TVALID       <= 1;    
+                    trsm_state           <= 1;
+                end
+
+                // Otherwise, if we've been asked to send a read-request, do so
+                else if (send_read_req != prior_send_read_req) begin
+                    prior_send_read_req  <= send_read_req;
+                    AXIS_TX_TDATA        <= read_req_msg;
+                    AXIS_TX_TLAST        <= 1;
+                    AXIS_TX_TVALID       <= 1;    
+                    trsm_state           <= 1;
+                end
+                
+                // Wait for the SAXI handshake, then go back to idle
+            1:  if (AXIS_TX_TVALID & AXIS_TX_TREADY) begin
+                    AXIS_TX_TVALID <= 0;
+                    trsm_state     <= 0;
+                end
+
+        endcase
+    end
+    //===============================================================================================
+
+
+    //===============================================================================================
+    // State machine that receives responses across the stream interface
+    //===============================================================================================
+    always @(posedge clk) begin
+
+        // If we're in reset, initialize important registers
+        if (resetn == 0) begin
+            rcvd_read_rsp  <= 0;
+            rcvd_write_rsp <= 0;
+            AXIS_RX_TREADY <= 0;
+
+        end else begin
+        
+            AXIS_RX_TREADY <= 1;
+    
+            if (AXIS_RX_TREADY && AXIS_RX_TVALID) begin
+                            
+                if (AXIS_RX_TDATA[PF_TYPE*32 +:32] == PKT_TYPE_READ) begin
+                    axi_rdata     <= AXIS_RX_TDATA[PF_DATA*32 +:32];
+                    axi_rresp     <= AXIS_RX_TDATA[PF_RESP*32 +:32];
+                    rcvd_read_rsp <= rcvd_read_rsp + 1;
+                end
+
+                        
+                else if (AXIS_RX_TDATA[PF_TYPE*32 +:32] == PKT_TYPE_WRITE) begin
+                    axi_wresp      <= AXIS_RX_TDATA[PF_RESP*32 +:32];
+                    rcvd_write_rsp <= rcvd_write_rsp + 1;
+                end
+            end
+        end
+    end
+    //===============================================================================================
+
+
+
 
 
     //===============================================================================================
@@ -243,13 +284,13 @@ module aximm_over_stream_client #
                         vector[vector_windex][63:32] <= ashi_wdata;
                     slv_write_state <= 0;
                 end
-
+ 
                 // If we're writing to a valid data register, send the write-request packet
                 else if (reg_windex >= 64 && reg_windex < (64 + VECTOR_COUNT)) begin
-                    write_req_packet[PF_TYPE] <= PKT_TYPE_WRITE;
-                    write_req_packet[PF_ADRH] <= vector[vector_windex][63:32];
-                    write_req_packet[PF_ADRL] <= vector[vector_windex][31:00];
-                    write_req_packet[PF_DATA] <= ashi_wdata;
+                    write_req_msg[PF_TYPE*32 +:32] <= PKT_TYPE_WRITE;
+                    write_req_msg[PF_ADRH*32 +:32] <= vector[vector_windex][63:32];
+                    write_req_msg[PF_ADRL*32 +:32] <= vector[vector_windex][31:00];
+                    write_req_msg[PF_DATA*32 +:32] <= ashi_wdata;
                     prior_write_rsp           <= rcvd_write_rsp;
                     send_write_req            <= send_write_req + 1;
                     slv_write_state           <= 2;
@@ -264,7 +305,7 @@ module aximm_over_stream_client #
 
                 // When 'rcvd_write_rsp' changes, we've received our response
             2:  if (prior_write_rsp != rcvd_write_rsp) begin
-                    ashi_wresp      <= write_rsp_packet[PF_RESP];
+                    ashi_wresp      <= axi_wresp;
                     slv_write_state <= 0;
                 end
 
@@ -339,12 +380,13 @@ module aximm_over_stream_client #
 
                 // If we're reading from a valid data register, go do that
                 else if (reg_rindex >= 64 && reg_rindex < (64 + VECTOR_COUNT)) begin
-                    read_req_packet[PF_TYPE] <= PKT_TYPE_READ;
-                    read_req_packet[PF_ADRH] <= vector[vector_rindex][63:32];
-                    read_req_packet[PF_ADRL] <= vector[vector_rindex][31:00];
-                    send_read_req            <= send_read_req + 1;
-                    prior_read_rsp           <= rcvd_read_rsp;
-                    slv_read_state           <= 2;
+                    read_req_msg[PF_TYPE*32 +:32] <= PKT_TYPE_READ;
+                    read_req_msg[PF_ADRH*32 +:32] <= vector[vector_rindex][63:32];
+                    read_req_msg[PF_ADRL*32 +:32] <= vector[vector_rindex][31:00];
+                    read_req_msg[PF_DATA*32 +:32] <= 0;
+                    prior_read_rsp                <= rcvd_read_rsp;
+                    send_read_req                 <= send_read_req + 1;
+                    slv_read_state                <= 2;
                 end 
 
                 // All other cases return a slave-error and go back to idle mode
@@ -355,151 +397,10 @@ module aximm_over_stream_client #
 
                 // When 'rcvd_read_rsp' changes, we've received our response
             2:  if (rcvd_read_rsp != prior_read_rsp) begin
-                    ashi_rdata     <= read_rsp_packet[PF_DATA];
-                    ashi_rresp     <= read_rsp_packet[PF_RESP];
+                    ashi_rdata     <= axi_rdata;
+                    ashi_rresp     <= axi_rresp;
                     slv_read_state <= 0;
                 end
-        endcase
-    end
-    //===============================================================================================
-
-
-    // Register names for the AXI-Stream FIFO
-    localparam ASF_BASE  = 0;
-    localparam ASF_ISR   = ASF_BASE + 8'h00;
-    localparam ASF_TDATA = ASF_BASE + 8'h10;
-    localparam ASF_TLR   = ASF_BASE + 8'h14;
-    localparam ASF_RDFO  = ASF_BASE + 8'h1C;
-    localparam ASF_RDATA = ASF_BASE + 8'h20;
-
-
-    //===============================================================================================
-    // This state machine manages the AXI-Stream FIFOs
-    //===============================================================================================
-    reg[7:0] fsm_state;
-    reg[1:0] prior_read_req, prior_write_req;
-    reg[3:0] packet_index;
-    reg[1:0] fsm_packet_type;
-    //===============================================================================================
-    always @(posedge clk) begin
-
-        // When these signals are raised, they should strobe high for exactly 1 cycle
-        amci_write <= 0;
-        amci_read  <= 0;
-
-        // If we're in reset, initialize important registers
-        if (resetn == 0) begin
-            fsm_state       <= 0;
-            prior_read_req  <= 0;
-            prior_write_req <= 0;
-            rcvd_read_rsp   <= 0;
-            rcvd_write_rsp  <= 0;
-
-        end else case(fsm_state)
-            
-            // Read the register that tells us if a packet has arrived
-            0:  if (amci_ridle) begin
-                    packet_index <= 0;
-                    amci_raddr   <= ASF_RDFO;
-                    amci_read    <= 1;
-                    fsm_state    <= fsm_state + 1;
-                end
-
-            //-------------------------------------------------
-            // In this section we wait for one of three events:
-            //   (1) A signal to transmit a write-request
-            //   (2) A signal to transmit a read-request
-            //   (3) The notification that a packet has arrived
-            //-------------------------------------------------
-
-            1:  if (amci_ridle) begin             // If we have the RDFO register...
-                    if (amci_rdata) begin         //   If it's non-zero (i.e., a packet has arrived)...
-                        amci_raddr <= ASF_RDATA;  //   We're going to start reading FIFO data
-                        amci_read  <= 1;          //   Start the AXI read...
-                        fsm_state  <= 20;         //   And go fetch the packet from the FIFO
-                    end
-                    else fsm_state <= 0;          // No packet available?  Go back to idle
-                end 
-                
-                // Otherwise, if we've been asked to send a write request...
-                else if (send_write_req != prior_write_req) begin
-                    prior_write_req <= send_write_req;
-                    fsm_packet_type <= PKT_TYPE_WRITE;
-                    fsm_state       <= 10;
-                end
-
-                // Otherwise, if we've been asked to send a read request...
-                else if (send_read_req != prior_read_req) begin
-                    prior_read_req  <= send_read_req;
-                    fsm_packet_type <= PKT_TYPE_READ;
-                    fsm_state       <= 10;
-                end
-
-            //-----------------------------------------------------------------
-            // In this section, we send a read-request or write-request packet
-            //-----------------------------------------------------------------
-            
-                // We sit in a loop sending the packet.  When we've sent all words
-                // of the packet, we tell the FIFO's TLR register how many bytes
-                // to transmit 
-            10: if (amci_widle) begin
-                    if (packet_index == PACKET_LENGTH_WORDS) begin
-                        amci_waddr   <= ASF_TLR;
-                        amci_wdata   <= PACKET_LENGTH_BYTES;
-                        amci_write   <= 1;
-                        fsm_state    <= fsm_state + 1;
-                    end else begin
-                        if (fsm_packet_type == PKT_TYPE_READ)
-                            amci_wdata <= read_req_packet[packet_index];
-                        else
-                            amci_wdata <= write_req_packet[packet_index];
-                        amci_waddr   <= ASF_TDATA;
-                        amci_write   <= 1;
-                        packet_index <= packet_index + 1;
-                    end
-                end 
-
-                // Wait for that last AXI write to complete, then back to idle
-            11: if (amci_widle) fsm_state <= 0;
-
-            //-----------------------------------------------------------------
-            // In this section, we're reading in a received packet
-            //-----------------------------------------------------------------
-
-            20: if (amci_ridle) begin
-                    
-                    // If this is the first index of the packet, save the packet type
-                    if (packet_index == 0)
-                        fsm_packet_type <= amci_rdata;
-                    
-                    // Otherwise if we're fetching a read packet, do so.
-                    else if (fsm_packet_type == PKT_TYPE_READ)
-                        read_rsp_packet[packet_index] <= amci_rdata;
-                    
-                    // Otherwise, we're fetching a write packet
-                    else
-                        write_rsp_packet[packet_index] <= amci_rdata;
-                    
-                    // If we just fetched the last word of the packet...
-                    if (packet_index == PACKET_LENGTH_WORDS - 1) begin
-                        
-                        // Signal that we just received either a read response or a write-response
-                        if (fsm_packet_type == PKT_TYPE_READ)
-                            rcvd_read_rsp <= rcvd_read_rsp + 1;
-                        else
-                            rcvd_write_rsp <= rcvd_write_rsp + 1;
-
-                        // And go back to idle
-                        fsm_state <= 0;
-                    end
-
-                    // Otherwise, just read the next word from the FIFO
-                    else begin
-                        packet_index <= packet_index + 1;
-                        amci_read    <= 1;
-                    end
-                end
-
         endcase
     end
     //===============================================================================================
@@ -557,68 +458,7 @@ module aximm_over_stream_client #
         .ASHI_RIDLE     (ashi_ridle)
     );
     //===============================================================================================
-
-
  
-    //===============================================================================================
-    // This connects us to an AXI4-Lite master core
-    //===============================================================================================
-    axi4_lite_master# 
-    (
-        .AXI_ADDR_WIDTH(M_AXI_ADDR_WIDTH),
-        .AXI_DATA_WIDTH(M_AXI_DATA_WIDTH)        
-    )
-    axi_master
-    (
-        .clk            (clk),
-        .resetn         (resetn),
-        
-        // AXI AW channel
-        .AXI_AWADDR     (M_AXI_AWADDR),
-        .AXI_AWVALID    (M_AXI_AWVALID),   
-        .AXI_AWPROT     (M_AXI_AWPROT),
-        .AXI_AWREADY    (M_AXI_AWREADY),
-        
-        // AXI W channel
-        .AXI_WDATA      (M_AXI_WDATA),
-        .AXI_WVALID     (M_AXI_WVALID),
-        .AXI_WSTRB      (M_AXI_WSTRB),
-        .AXI_WREADY     (M_AXI_WREADY),
-
-        // AXI B channel
-        .AXI_BRESP      (M_AXI_BRESP),
-        .AXI_BVALID     (M_AXI_BVALID),
-        .AXI_BREADY     (M_AXI_BREADY),
-
-        // AXI AR channel
-        .AXI_ARADDR     (M_AXI_ARADDR), 
-        .AXI_ARVALID    (M_AXI_ARVALID),
-        .AXI_ARPROT     (M_AXI_ARPROT),
-        .AXI_ARREADY    (M_AXI_ARREADY),
-
-        // AXI R channel
-        .AXI_RDATA      (M_AXI_RDATA),
-        .AXI_RVALID     (M_AXI_RVALID),
-        .AXI_RRESP      (M_AXI_RRESP),
-        .AXI_RREADY     (M_AXI_RREADY),
-
-        // AMCI write-request registers
-        .AMCI_WADDR     (amci_waddr),
-        .AMCI_WDATA     (amci_wdata),
-        .AMCI_WRITE     (amci_write),
-        .AMCI_WRESP     (amci_wresp),
-        .AMCI_WIDLE     (amci_widle),
-
-        // ASHI-read-request registers
-        .AMCI_RADDR     (amci_raddr),
-        .AMCI_RDATA     (amci_rdata),
-        .AMCI_READ      (amci_read ),
-        .AMCI_RRESP     (amci_rresp),
-        .AMCI_RIDLE     (amci_ridle)
-    );
-    //===============================================================================================
-
-
 
 endmodule
 
