@@ -15,9 +15,9 @@ preplace port port-id_clk -pg 1 -lvl 0 -x 0 -y 80 -defaultsOSRD
 preplace inst aximm_stream_server -pg 1 -lvl 1 -x 150 -y 60 -defaultsOSRD -pinDir AXIS_RX left -pinY AXIS_RX 0L -pinDir AXIS_TX right -pinY AXIS_TX 0R -pinDir M_AXI right -pinY M_AXI 20R -pinDir clk left -pinY clk 20L -pinDir resetn left -pinY resetn 40L
 preplace netloc clk_1 1 0 1 NJ 80
 preplace netloc resetn_1 1 0 1 NJ 100
+preplace netloc AXI_STR_RXD_1 1 0 1 NJ 60
 preplace netloc Conn1 1 1 1 NJ 80
 preplace netloc aximm_stream_server_AXIS_TX 1 1 1 NJ 60
-preplace netloc AXI_STR_RXD_1 1 0 1 NJ 60
 levelinfo -pg 1 0 150 310
 pagesize -pg 1 -db -bbox -sgen -150 0 460 160
 ",
