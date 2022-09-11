@@ -1,75 +1,222 @@
 {
    "ActiveEmotionalView":"No Loops",
    "Default View_ScaleFactor":"1.0",
-   "Default View_TopLeft":"-190,-217",
-   "Display-PortTypeClock":"true",
-   "Display-PortTypeInterrupt":"true",
-   "Display-PortTypeOthers":"true",
-   "Display-PortTypeReset":"true",
+   "Default View_TopLeft":"-339,-226",
    "DisplayTieOff":"1",
    "ExpandedHierarchyInLayout":"",
-   "Interfaces View_ExpandedHierarchyInLayout":"",
-   "Interfaces View_Layers":"/sidewinder_board/clock_and_reset/system_reset_interconnect_aresetn:false|/CLK100MHZ_2:false|/sidewinder_board/clock_and_reset/system_reset_peripheral_reset:false|/ecd_board/clock_and_reset/system_reset_interconnect_aresetn:false|/ecd_board/clock_and_reset/system_reset_peripheral_reset:false|/sidewinder_board/clock_and_reset/system_reset_peripheral_aresetn:false|/ecd_board/clock_and_reset/system_reset_peripheral_aresetn:false|/sidewinder_board/host_pc_interface/control_uart_interrupt:false|/CPU_RESETN_1:false|/CLK100MHZ_1:false|",
-   "Interfaces View_Layout":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
-#  -string -flagsOSRD
-preplace port UART -pg 1 -lvl 3 -x 520 -y 70 -defaultsOSRD
-preplace port GPIO_LED -pg 1 -lvl 3 -x 520 -y 150 -defaultsOSRD
-preplace port GPIO_SW -pg 1 -lvl 3 -x 520 -y 170 -defaultsOSRD
-preplace inst sidewinder_board -pg 1 -lvl 1 -x 140 -y 80 -defaultsOSRD
-preplace inst ecd_board -pg 1 -lvl 2 -x 380 -y 150 -defaultsOSRD
-preplace netloc AXI_STR_RXD_1 1 0 3 20 10 NJ 10 500
-preplace netloc ecd_board_GPIO2_0 1 2 1 NJ 170
-preplace netloc ecd_board_GPIO_0 1 2 1 NJ 150
-preplace netloc sidewinder_board_AXI_STR_TXD 1 1 1 260 90n
-preplace netloc sidewinder_board_UART 1 1 2 NJ 70 NJ
-levelinfo -pg 1 0 140 380 520
-pagesize -pg 1 -db -bbox -sgen 0 0 640 220
-",
-   "Interfaces View_ScaleFactor":"1.0",
-   "Interfaces View_TopLeft":"-390,-254",
    "No Loops_ExpandedHierarchyInLayout":"",
-   "No Loops_Layers":"/sidewinder_board/clock_and_reset/system_reset_interconnect_aresetn:true|/CLK100MHZ_2:true|/sidewinder_board/clock_and_reset/system_reset_peripheral_reset:true|/ecd_board/clock_and_reset/system_reset_interconnect_aresetn:true|/ecd_board/clock_and_reset/system_reset_peripheral_reset:true|/sidewinder_board/clock_and_reset/system_reset_peripheral_aresetn:true|/ecd_board/clock_and_reset/system_reset_peripheral_aresetn:true|/sidewinder_board/host_pc_interface/control_uart_interrupt:true|/CPU_RESETN_1:true|/CLK100MHZ_1:true|",
    "No Loops_Layout":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
 #  -string -flagsOSRD
-preplace port UART -pg 1 -lvl 4 -x 800 -y 190 -defaultsOSRD
-preplace port GPIO_LED -pg 1 -lvl 4 -x 800 -y 60 -defaultsOSRD
-preplace port GPIO_SW -pg 1 -lvl 4 -x 800 -y 80 -defaultsOSRD
-preplace port port-id_CPU_RESETN -pg 1 -lvl 0 -x 0 -y 210 -defaultsOSRD
-preplace port port-id_CLK100MHZ -pg 1 -lvl 0 -x 0 -y 150 -defaultsOSRD
-preplace inst sidewinder_board -pg 1 -lvl 2 -x 400 -y 60 -swap {8 1 2 0 4 5 6 7 3 9 10 11 12 15 13 14} -defaultsOSRD -pinDir UART right -pinY UART 130R -pinDir QSFP_RX right -pinY QSFP_RX 0R -pinDir QSFP_TX right -pinY QSFP_TX 20R -pinDir sys_resetn left -pinY sys_resetn 130L -pinDir sys_clock left -pinY sys_clock 90L -pinDir qsfp_clock left -pinY qsfp_clock 110L
-preplace inst global_clock -pg 1 -lvl 1 -x 140 -y 150 -defaultsOSRD -pinDir clk_in1 left -pinY clk_in1 0L -pinDir clk_out_100mhz right -pinY clk_out_100mhz 0R
-preplace inst ecd_board -pg 1 -lvl 3 -x 660 -y 60 -swap {0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 16 15} -defaultsOSRD -pinDir QSFP_TX left -pinY QSFP_TX 0L -pinDir QSFP_RX left -pinY QSFP_RX 20L -pinDir GPIO_LED right -pinY GPIO_LED 0R -pinDir GPIO_SW right -pinY GPIO_SW 20R -pinDir sys_clock left -pinY sys_clock 40L -pinDir sys_resetn left -pinY sys_resetn 80L -pinDir qsfp_clock left -pinY qsfp_clock 60L
-preplace netloc CLK100MHZ_1 1 1 2 260 240 520
-preplace netloc CLK100MHZ_2 1 0 1 NJ 150
-preplace netloc CPU_RESETN_1 1 0 3 NJ 210 280 260 540J
-preplace netloc AXI_STR_RXD_1 1 2 1 N 60
-preplace netloc ecd_board_GPIO2_0 1 3 1 NJ 80
-preplace netloc ecd_board_GPIO_0 1 3 1 NJ 60
-preplace netloc sidewinder_board_AXI_STR_TXD 1 2 1 N 80
-preplace netloc sidewinder_board_UART 1 2 2 NJ 190 NJ
-levelinfo -pg 1 0 140 400 660 800
-pagesize -pg 1 -db -bbox -sgen -150 0 920 270
+preplace port UART -pg 1 -lvl 0 -x 0 -y 60 -defaultsOSRD -left
+preplace port GPIO_LED -pg 1 -lvl 5 -x 800 -y 60 -defaultsOSRD
+preplace port GPIO_SW -pg 1 -lvl 5 -x 800 -y 80 -defaultsOSRD
+preplace port port-id_CPU_RESETN -pg 1 -lvl 0 -x 0 -y 120 -defaultsOSRD
+preplace port port-id_CLK100MHZ -pg 1 -lvl 0 -x 0 -y 250 -defaultsOSRD
+preplace inst sidewinder_board -pg 1 -lvl 2 -x 180 -y 60 -swap {0 1 2 8 4 5 6 7 3 9 10 11 12 13 14 15} -defaultsOSRD -pinDir UART left -pinY UART 0L -pinDir QSFP_RX right -pinY QSFP_RX 20R -pinDir QSFP_TX right -pinY QSFP_TX 0R -pinDir sys_resetn left -pinY sys_resetn 60L -pinDir sys_clock right -pinY sys_clock 40R -pinDir qsfp_clock right -pinY qsfp_clock 60R
+preplace inst global_clock -pg 1 -lvl 3 -x 420 -y 250 -defaultsOSRD -pinDir clk_in1 left -pinY clk_in1 0L -pinDir clk_out_100mhz right -pinY clk_out_100mhz 0R
+preplace inst ecd_board -pg 1 -lvl 4 -x 660 -y 60 -swap {5 1 2 3 4 0 6 7 8 9 10 11 12 13 15 14 16} -defaultsOSRD -pinDir QSFP_TX left -pinY QSFP_TX 20L -pinDir QSFP_RX left -pinY QSFP_RX 0L -pinDir GPIO_LED right -pinY GPIO_LED 0R -pinDir GPIO_SW right -pinY GPIO_SW 20R -pinDir sys_clock left -pinY sys_clock 130L -pinDir sys_resetn left -pinY sys_resetn 110L -pinDir qsfp_clock left -pinY qsfp_clock 150L
+preplace netloc CLK100MHZ_1 1 2 2 300 190 540
+preplace netloc CLK100MHZ_2 1 0 3 NJ 250 N 250 N
+preplace netloc CPU_RESETN_1 1 0 4 NJ 120 60 170 N 170 N
+preplace netloc AXI_STR_RXD_1 1 2 2 N 80 N
+preplace netloc ecd_board_GPIO2_0 1 4 1 NJ 80
+preplace netloc ecd_board_GPIO_0 1 4 1 NJ 60
+preplace netloc sidewinder_board_AXI_STR_TXD 1 2 2 N 60 N
+preplace netloc sidewinder_board_UART 1 0 2 N 60 N
+preplace cgraphic comment_3 place top 0 0 textcolor 4 linecolor 3
+preplace cgraphic comment_2 place top 0 0 textcolor 4 linecolor 3
+preplace cgraphic comment_1 place top 0 0 textcolor 4 linecolor 3
+preplace cgraphic comment_0 place top 0 0 textcolor 4 linecolor 3
+preplace cgraphic comment_7 place top 0 0 textcolor 4 linecolor 3
+preplace cgraphic comment_6 place top 0 0 textcolor 4 linecolor 3
+preplace cgraphic comment_5 place top 0 0 textcolor 4 linecolor 3
+preplace cgraphic comment_4 place top 0 0 textcolor 4 linecolor 3
+preplace cgraphic comment_10 place top 0 0 textcolor 4 linecolor 3
+preplace cgraphic comment_9 place top 0 0 textcolor 4 linecolor 3
+preplace cgraphic comment_8 place top 0 0 textcolor 4 linecolor 3
+levelinfo -pg 1 0 40 180 420 660 800
+pagesize -pg 1 -db -bbox -sgen -150 0 920 310
 ",
+   "No Loops_PinnedBlocks":"",
+   "No Loops_PinnedPorts":"",
    "No Loops_ScaleFactor":"1.0",
-   "No Loops_TopLeft":"-321,-229",
+   "No Loops_TopLeft":"-321,-194",
+   "comment_0":"Enter Comments here",
+   "comment_1":"This 'aurora_lite' simulates a XIlinx Aurora IP
+core.   It contains the same basic signals that
+an Aurora does, and with the same names.
+
+In a real Aurora, the GT_SERIAL_<RX|TX> lines
+are multi-gigabit tranceivers.   Here, they are
+AXI streams. ",
+   "comment_10":"When the 'aximm_stream_client' on the 
+other board is the object of AXI read/
+write transactions, those AXI transactions
+are actually carried out here, by the 
+'aximm_stream_server'",
+   "comment_2":"This 'aurora_lite' simulates a XIlinx Aurora IP
+core.   It contains the same basic signals that
+an Aurora does, and with the same names.
+
+In a real Aurora, the GT_SERIAL_<RX|TX> lines
+are multi-gigabit tranceivers.   Here, they are
+AXI streams. ",
+   "comment_3":"This 'aurora_lite' simulates a XIlinx Aurora IP
+core.   It contains the same basic signals that
+an Aurora does, and with the same names.
+
+In a real Aurora, the GT_SERIAL_<RX|TX> lines
+are multi-gigabit tranceivers.   Here, they are
+AXI streams. ",
+   "comment_4":"This 'aurora_lite' simulates a XIlinx Aurora IP
+core.   It contains the same basic signals that
+an Aurora does, and with the same names.
+
+In a real Aurora, the GT_SERIAL_<RX|TX> lines
+are multi-gigabit tranceivers.   Here, they are
+AXI streams. ",
+   "comment_5":"This 'aurora_lite' simulates a XIlinx Aurora IP
+core.   It contains the same basic signals that
+an Aurora does, and with the same names.
+
+In a real Aurora, the GT_SERIAL_<RX|TX> lines
+are multi-gigabit tranceivers.   Here, they are
+AXI streams. ",
+   "comment_6":"In this example design, the host PC
+interface to our AXI bus is via UART.
+
+In a more complex design, the host
+PC interface might be via a PCIe
+bridge",
+   "comment_7":"iface comment",
+   "comment_8":"This 'aurora_lite' simulates a XIlinx Aurora IP
+core.   It contains the same basic signals that
+an Aurora does, and with the same names.
+
+In a real Aurora, the GT_SERIAL_<RX|TX> lines
+are multi-gigabit tranceivers.   Here, they are
+AXI streams. ",
+   "comment_9":"iface comment",
+   "commentid":"comment_0|comment_1|comment_2|comment_3|comment_4|comment_5|comment_6|comment_7|comment_8|comment_9|comment_10|comment_10|comment_10|comment_10|comment_10|comment_10|comment_10|comment_10|comment_10|comment_10|",
+   "fillcolor_comment_0":"",
+   "fillcolor_comment_1":"",
+   "fillcolor_comment_10":"",
+   "fillcolor_comment_2":"",
+   "fillcolor_comment_3":"",
+   "fillcolor_comment_4":"",
+   "fillcolor_comment_5":"",
+   "fillcolor_comment_6":"",
+   "fillcolor_comment_7":"",
+   "fillcolor_comment_8":"",
+   "fillcolor_comment_9":"",
+   "font_comment_0":"14",
+   "font_comment_1":"14",
+   "font_comment_10":"14",
+   "font_comment_2":"14",
+   "font_comment_3":"14",
+   "font_comment_4":"14",
+   "font_comment_5":"14",
+   "font_comment_6":"14",
+   "font_comment_7":"14",
+   "font_comment_8":"14",
+   "font_comment_9":"14",
    "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
 #  -string -flagsOSRD
-preplace port port-id_CPU_RESETN -pg 1 -lvl 0 -x 0 -y 120 -defaultsOSRD
-preplace port port-id_CLK100MHZ -pg 1 -lvl 0 -x 0 -y 60 -defaultsOSRD
-preplace inst system_clock -pg 1 -lvl 1 -x 130 -y 60 -defaultsOSRD
-preplace inst system_reset -pg 1 -lvl 2 -x 430 -y 140 -defaultsOSRD
-preplace inst axi_uart_bridge_0 -pg 1 -lvl 3 -x 750 -y 180 -defaultsOSRD
-preplace inst system_interconnect -pg 1 -lvl 4 -x 1030 -y 190 -defaultsOSRD
-preplace netloc system_clock_clk_100mhz 1 1 3 240 240 620 260 880J
-preplace netloc ext_reset_in_0_1 1 0 2 NJ 120 NJ
-preplace netloc clk_in1_0_1 1 0 1 NJ 60
-preplace netloc system_reset_interconnect_aresetn 1 2 2 610 270 890J
-preplace netloc system_reset_peripheral_aresetn 1 2 1 N 180
-preplace netloc axi_uart_bridge_0_M_AXI 1 3 1 N 170
-levelinfo -pg 1 0 130 430 750 1030 1180
-pagesize -pg 1 -db -bbox -sgen -150 0 1180 280
-"
+preplace port UART -pg 1 -lvl 4 -x 710 -y 90 -defaultsOSRD
+preplace port GPIO_LED -pg 1 -lvl 4 -x 710 -y 180 -defaultsOSRD
+preplace port GPIO_SW -pg 1 -lvl 4 -x 710 -y 200 -defaultsOSRD
+preplace port port-id_CPU_RESETN -pg 1 -lvl 0 -x 0 -y 90 -defaultsOSRD
+preplace port port-id_CLK100MHZ -pg 1 -lvl 0 -x 0 -y 150 -defaultsOSRD
+preplace inst sidewinder_board -pg 1 -lvl 2 -x 360 -y 100 -defaultsOSRD
+preplace inst global_clock -pg 1 -lvl 1 -x 130 -y 150 -defaultsOSRD
+preplace inst ecd_board -pg 1 -lvl 3 -x 580 -y 180 -defaultsOSRD
+preplace netloc CLK100MHZ_1 1 1 2 250 180 470
+preplace netloc CLK100MHZ_2 1 0 1 NJ 150
+preplace netloc CPU_RESETN_1 1 0 3 NJ 90 240 190 NJ
+preplace netloc AXI_STR_RXD_1 1 1 3 240 10 NJ 10 690
+preplace netloc ecd_board_GPIO2_0 1 3 1 NJ 200
+preplace netloc ecd_board_GPIO_0 1 3 1 NJ 180
+preplace netloc sidewinder_board_AXI_STR_TXD 1 2 1 470 110n
+preplace netloc sidewinder_board_UART 1 2 2 NJ 90 NJ
+levelinfo -pg 1 0 130 360 580 710
+pagesize -pg 1 -db -bbox -sgen -120 0 820 260
+",
+   "linecolor_comment_0":"",
+   "linecolor_comment_1":"",
+   "linecolor_comment_10":"",
+   "linecolor_comment_2":"",
+   "linecolor_comment_3":"",
+   "linecolor_comment_4":"",
+   "linecolor_comment_5":"",
+   "linecolor_comment_6":"",
+   "linecolor_comment_7":"",
+   "linecolor_comment_8":"",
+   "linecolor_comment_9":"",
+   "linktoobj_comment_0":"/sidewinder_board/aurora_lite",
+   "linktoobj_comment_1":"/ecd_board/aurora_lite",
+   "linktoobj_comment_10":"/ecd_board/aurora_lite",
+   "linktoobj_comment_2":"/ecd_board/aurora_lite",
+   "linktoobj_comment_3":"/ecd_board/aurora_lite",
+   "linktoobj_comment_4":"/ecd_board/aurora_lite",
+   "linktoobj_comment_5":"/ecd_board/aurora_lite",
+   "linktoobj_comment_6":"/sidewinder_board/host_pc_interface",
+   "linktoobj_comment_7":"/sidewinder_board/host_pc_interface",
+   "linktoobj_comment_8":"/ecd_board/aurora_lite",
+   "linktoobj_comment_9":"/sidewinder_board/host_pc_interface",
+   "linktotype_comment_0":"bd_cell",
+   "linktotype_comment_1":"bd_cell",
+   "linktotype_comment_10":"bd_cell",
+   "linktotype_comment_2":"bd_cell",
+   "linktotype_comment_3":"bd_cell",
+   "linktotype_comment_4":"bd_cell",
+   "linktotype_comment_5":"bd_cell",
+   "linktotype_comment_6":"bd_cell",
+   "linktotype_comment_7":"bd_cell",
+   "linktotype_comment_8":"bd_cell",
+   "linktotype_comment_9":"bd_cell",
+   "textcolor_comment_0":"",
+   "textcolor_comment_1":"",
+   "textcolor_comment_10":"",
+   "textcolor_comment_2":"",
+   "textcolor_comment_3":"",
+   "textcolor_comment_4":"",
+   "textcolor_comment_5":"",
+   "textcolor_comment_6":"",
+   "textcolor_comment_7":"",
+   "textcolor_comment_8":"",
+   "textcolor_comment_9":""
 }
 {
-   "da_axi4_cnt":"4"
+   """"""""""""""""""""""""""""""da_axi4_cnt"""""""""""""""""""""""""""""":"4"
+}
+{
+   "/comment_0":"comment_8",
+   "/comment_7":"comment_9",
+   "/ecd_board/aurora_lite/comment_0":"comment_2",
+   "/ecd_board/aurora_lite/comment_13":"comment_1",
+   "/ecd_board/aurora_lite/comment_15":"comment_3",
+   "/ecd_board/aurora_lite/comment_17":"comment_4",
+   "/ecd_board/aurora_lite/comment_20":"comment_5",
+   "/ecd_board/aurora_lite/comment_22":"comment_8",
+   "/ecd_board/aurora_lite/comment_26":"comment_10",
+   "/ecd_board/aurora_lite/comment_27":"comment_10",
+   "/ecd_board/aurora_lite/comment_29":"comment_10",
+   "/ecd_board/aurora_lite/comment_31":"comment_10",
+   "/ecd_board/aximm_stream_server/comment_2":"comment_10",
+   "/ecd_board/aximm_stream_server/comment_33":"comment_10",
+   "/ecd_board/comment_7":"comment_7",
+   "/ecd_board/demonstration_slave/comment_1":"comment_10",
+   "/ecd_board/demonstration_slave/comment_28":"comment_10",
+   "/ecd_board/demonstration_slave/comment_30":"comment_10",
+   "/ecd_board/demonstration_slave/comment_32":"comment_10",
+   "/sidewinder_board/aurora_lite/comment_12":"comment_0",
+   "/sidewinder_board/comment_10":"comment_3",
+   "/sidewinder_board/comment_11":"comment_4",
+   "/sidewinder_board/comment_2":"comment_5",
+   "/sidewinder_board/comment_4":"comment_6",
+   "/sidewinder_board/comment_8":"comment_1",
+   "/sidewinder_board/comment_9":"comment_2",
+   "/sidewinder_board/host_pc_interface/comment_16":"comment_6",
+   "/sidewinder_board/host_pc_interface/comment_4":"comment_7",
+   "/sidewinder_board/host_pc_interface/comment_7":"comment_9"
 }

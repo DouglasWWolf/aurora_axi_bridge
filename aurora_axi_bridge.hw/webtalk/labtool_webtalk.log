@@ -1,8 +1,0 @@
-
-****** Webtalk v2021.1 (64-bit)
-  **** SW Build 3247384 on Thu Jun 10 19:36:07 MDT 2021
-  **** IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
-    ** Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
-
-source /fpga/aurora_axi_bridge/aurora_axi_bridge.hw/webtalk/labtool_webtalk.tcl -notrace
-INFO: [Common 17-206] Exiting Webtalk at Sat Sep 10 09:31:07 2022...
