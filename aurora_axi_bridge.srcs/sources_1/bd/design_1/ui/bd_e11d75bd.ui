@@ -66,6 +66,7 @@ are actually carried out here, by the
    "commentid":"comment_0|comment_1|comment_2|",
    "fillcolor_comment_0":"",
    "fillcolor_comment_1":"",
+   "fillcolor_comment_2":"",
    "font_comment_0":"13",
    "font_comment_1":"13",
    "font_comment_2":"13",
@@ -107,6 +108,7 @@ pagesize -pg 1 -db -bbox -sgen -120 0 1680 490
 ",
    "linecolor_comment_0":"",
    "linecolor_comment_1":"",
+   "linecolor_comment_2":"",
    "linktoobj_comment_0":"/ecd_board/aurora_lite",
    "linktoobj_comment_1":"/ecd_board/demonstration_slave",
    "linktoobj_comment_2":"/ecd_board/aximm_stream_server",
@@ -114,6 +116,7 @@ pagesize -pg 1 -db -bbox -sgen -120 0 1680 490
    "linktotype_comment_1":"bd_cell",
    "linktotype_comment_2":"bd_cell",
    "textcolor_comment_0":"",
-   "textcolor_comment_1":""
+   "textcolor_comment_1":"",
+   "textcolor_comment_2":""
 }
 0
