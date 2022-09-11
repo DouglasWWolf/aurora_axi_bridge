@@ -57,7 +57,7 @@ and write transactions to its
 registers are seamlessly carried
 out on the remote system",
    "comment_2":"In this example design, the host PC
-interface to our AXI bus is via UART.
+interfaces to our AXI bus is via UART.
 
 In a more complex design, the host
 PC interface might be via a PCIe

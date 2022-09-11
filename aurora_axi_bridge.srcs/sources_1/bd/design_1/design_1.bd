@@ -2994,7 +2994,7 @@
       },
       "/sidewinder_board/host_pc_interface": {
         "comment_14": "In this example design, the host\nPC interface into our AXI bus is via\na UART.   In a more complex design\nthe host PC would interface to our\nAXI bus via a PCIe bridge",
-        "comment_16": "In this example design, the host PC\ninterface to our AXI bus is via UART.\n\nIn a more complex design, the host\nPC interface might be via a PCIe\nbridge",
+        "comment_16": "In this example design, the host PC\ninterfaces to our AXI bus is via UART.\n\nIn a more complex design, the host\nPC interface might be via a PCIe\nbridge",
         "comment_4": "iface comment",
         "comment_7": "iface comment"
       }

@@ -41,7 +41,7 @@ pagesize -pg 1 -db -bbox -sgen -150 0 920 310
    "No Loops_PinnedBlocks":"",
    "No Loops_PinnedPorts":"",
    "No Loops_ScaleFactor":"1.0",
-   "No Loops_TopLeft":"-314,-287",
+   "No Loops_TopLeft":"-321,-295",
    "comment_0":"Enter Comments here",
    "comment_1":"This 'aurora_lite' simulates a XIlinx Aurora IP
 core.   It contains the same basic signals that
@@ -94,7 +94,7 @@ In a real Aurora, the GT_SERIAL_<RX|TX> lines
 are multi-gigabit tranceivers.   Here, they are
 AXI streams. ",
    "comment_6":"In this example design, the host PC
-interface to our AXI bus is via UART.
+interfaces to our AXI bus is via UART.
 
 In a more complex design, the host
 PC interface might be via a PCIe
@@ -204,7 +204,7 @@ pagesize -pg 1 -db -bbox -sgen -120 0 820 260
    "textcolor_comment_9":""
 }
 {
-   """""""""""""""""""""""""""""""""da_axi4_cnt""""""""""""""""""""""""""""""""":"4"
+   """"""""""""""""""""""""""""""""""da_axi4_cnt"""""""""""""""""""""""""""""""""":"4"
 }
 {
    "/comment_0":"comment_8",

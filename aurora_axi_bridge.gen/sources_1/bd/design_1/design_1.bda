@@ -26,28 +26,11 @@
       <data key="VT">VR</data>
     </node>
     <node id="n1">
-      <data key="VM">design_1</data>
-      <data key="VT">BC</data>
+      <data key="TU">active</data>
+      <data key="VH">2</data>
+      <data key="VT">PM</data>
     </node>
     <node id="n2">
-      <data key="BA">0x0000000000001000</data>
-      <data key="BP">C_BASEADDR</data>
-      <data key="HA">0x0000000000001FFF</data>
-      <data key="HP">C_HIGHADDR</data>
-      <data key="MA">M_AXI</data>
-      <data key="MX">/sidewinder_board/host_pc_interface/axi_uart_bridge</data>
-      <data key="MI">M_AXI</data>
-      <data key="MS">SEG_aximm_stream_client_reg0</data>
-      <data key="MV">xilinx.com:module_ref:axi_uart_bridge:1.0</data>
-      <data key="TM">both</data>
-      <data key="SX">/sidewinder_board/aximm_stream_client</data>
-      <data key="SI">S_AXI</data>
-      <data key="SS">reg0</data>
-      <data key="SV">xilinx.com:module_ref:aximm_over_stream_client:1.0</data>
-      <data key="TU">register</data>
-      <data key="VT">AC</data>
-    </node>
-    <node id="n3">
       <data key="BA">0x00000000</data>
       <data key="BP">C_BASEADDR</data>
       <data key="HA">0x00000FFF</data>
@@ -65,12 +48,11 @@
       <data key="TU">register</data>
       <data key="VT">AC</data>
     </node>
-    <node id="n4">
-      <data key="TU">active</data>
-      <data key="VH">2</data>
-      <data key="VT">PM</data>
+    <node id="n3">
+      <data key="VM">design_1</data>
+      <data key="VT">BC</data>
     </node>
-    <node id="n5">
+    <node id="n4">
       <data key="BA">0x0000000000004000</data>
       <data key="BP">C_BASEADDR</data>
       <data key="HA">0x0000000000004FFF</data>
@@ -88,17 +70,35 @@
       <data key="TU">register</data>
       <data key="VT">AC</data>
     </node>
-    <edge id="e0" source="n1" target="n0">
+    <node id="n5">
+      <data key="BA">0x0000000000001000</data>
+      <data key="BP">C_BASEADDR</data>
+      <data key="HA">0x0000000000001FFF</data>
+      <data key="HP">C_HIGHADDR</data>
+      <data key="MA">M_AXI</data>
+      <data key="MX">/sidewinder_board/host_pc_interface/axi_uart_bridge</data>
+      <data key="MI">M_AXI</data>
+      <data key="MS">SEG_aximm_stream_client_reg0</data>
+      <data key="MV">xilinx.com:module_ref:axi_uart_bridge:1.0</data>
+      <data key="TM">both</data>
+      <data key="SX">/sidewinder_board/aximm_stream_client</data>
+      <data key="SI">S_AXI</data>
+      <data key="SS">reg0</data>
+      <data key="SV">xilinx.com:module_ref:aximm_over_stream_client:1.0</data>
+      <data key="TU">register</data>
+      <data key="VT">AC</data>
+    </node>
+    <edge id="e0" source="n3" target="n0">
     </edge>
-    <edge id="e1" source="n0" target="n4">
+    <edge id="e1" source="n0" target="n1">
     </edge>
-    <edge id="e2" source="n2" target="n4">
+    <edge id="e2" source="n5" target="n1">
       <data key="EH">2</data>
     </edge>
-    <edge id="e3" source="n3" target="n4">
+    <edge id="e3" source="n2" target="n1">
       <data key="EH">2</data>
     </edge>
-    <edge id="e4" source="n5" target="n4">
+    <edge id="e4" source="n4" target="n1">
       <data key="EH">2</data>
     </edge>
   </graph>
