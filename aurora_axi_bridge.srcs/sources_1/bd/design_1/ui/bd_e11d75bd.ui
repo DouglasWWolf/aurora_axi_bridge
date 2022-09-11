@@ -42,10 +42,10 @@ preplace cgraphic comment_2 place top -173 -143 textcolor 4 linecolor 3 linewidt
 preplace cgraphic comment_1 place bot -110 57 textcolor 4 linecolor 3 linewidth 2
 preplace cgraphic comment_0 place top -172 -169 textcolor 4 linecolor 3 linewidth 2
 levelinfo -pg 1 0 180 500 850 1130 1500 1700
-pagesize -pg 1 -db -bbox -sgen -130 -100 1820 650
+pagesize -pg 1 -db -bbox -sgen -130 0 1820 510
 ",
-   "No Loops_ScaleFactor":"0.729938",
-   "No Loops_TopLeft":"-125,-253",
+   "No Loops_ScaleFactor":"1.0",
+   "No Loops_TopLeft":"-389,-424",
    "comment_0":"This 'aurora_lite' simulates a XIlinx Aurora IP
 core.   It contains the same basic signals that
 an Aurora does, and with the same names.
@@ -59,7 +59,7 @@ as the target for AXI read/write
 transactions originating from
 the other system",
    "comment_2":"When the 'aximm_stream_client' on the 
-other board is the object of AXI read/
+other board is the target of AXI read/
 write transactions, those AXI transactions
 are actually carried out here, by the 
 'aximm_stream_server'",
@@ -120,3 +120,8 @@ pagesize -pg 1 -db -bbox -sgen -120 0 1680 490
    "textcolor_comment_2":""
 }
 0
+{
+   "/ecd_board/aurora_lite/comment_38":"comment_0",
+   "/ecd_board/aximm_stream_server/comment_40":"comment_2",
+   "/ecd_board/demonstration_slave/comment_39":"comment_1"
+}

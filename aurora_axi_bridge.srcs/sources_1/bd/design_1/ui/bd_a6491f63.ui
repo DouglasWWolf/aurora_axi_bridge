@@ -42,8 +42,8 @@ preplace cgraphic comment_0 place bot -155 28 textcolor 4 linecolor 3 linewidth 
 levelinfo -pg 1 0 180 510 780 1080 1280
 pagesize -pg 1 -db -bbox -sgen -130 0 1400 560
 ",
-   "No Loops_ScaleFactor":"0.864286",
-   "No Loops_TopLeft":"-187,-131",
+   "No Loops_ScaleFactor":"1.41421",
+   "No Loops_TopLeft":"-241,-184",
    "comment_0":"This 'aurora_lite' simulates a XIlinx Aurora IP
 core.   It contains the same basic signals that
 an Aurora does, and with the same names.

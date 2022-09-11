@@ -8,7 +8,7 @@ git add ${folder}/${project}.sim
 git add ${folder}/${project}.srcs
 git add ${folder}/${project}.xpr
 
-git add src xdc board_files README.md push
+git add src xdc image board_files README.md push
 
 git commit -m "No commit message"
 git push origin main
