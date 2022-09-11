@@ -42,8 +42,8 @@ preplace cgraphic comment_0 place bot -131 24 textcolor 4 linecolor 3 linewidth 
 levelinfo -pg 1 0 180 510 790 1100 1300
 pagesize -pg 1 -db -bbox -sgen -130 -60 1420 660
 ",
-   "No Loops_ScaleFactor":"0.9075",
-   "No Loops_TopLeft":"-138,-120",
+   "No Loops_ScaleFactor":"1.41421",
+   "No Loops_TopLeft":"-229,-201",
    "comment_0":"This 'aurora_lite' simulates a XIlinx Aurora IP
 core.   It contains the same basic signals that
 an Aurora does, and with the same names.
@@ -52,7 +52,7 @@ In a real Aurora, the GT_SERIAL_<RX|TX> lines
 are multi-gigabit tranceivers.   Here, they are
 AXI streams. ",
    "comment_2":"In this example design, the host PC
-interfaces to our AXI bus is via UART.
+interface to our AXI bus is via UART.
 
 In a more complex design, the host
 PC interface might be via a PCIe

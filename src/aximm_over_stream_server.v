@@ -94,18 +94,18 @@ module aximm_over_stream_server
     //===============================================================================================
 
    
-    // Message types
+    // Message Types
     localparam MT_READ_REQ  = 1;
     localparam MT_WRITE_REQ = 2;
     localparam MT_READ_RSP  = 3;
     localparam MT_WRITE_RSP = 4;
 
-    // The fields of a packet
-    localparam PF_TYPE = 0;  // Packet type
-    localparam PF_ADRL = 1;  // Low word of address
-    localparam PF_ADRH = 2;  // High word of address
-    localparam PF_DATA = 3;  // Read or write data
-    localparam PF_RESP = 4;  // AXI_RRESP or AXI_BRESP
+    // Message Fields
+    localparam MF_TYPE = 0;  // Packet type
+    localparam MF_ADRL = 1;  // Low word of address
+    localparam MF_ADRH = 2;  // High word of address
+    localparam MF_DATA = 3;  // Read or write data
+    localparam MF_RESP = 4;  // AXI_RRESP or AXI_BRESP
 
     
     //===============================================================================================
@@ -147,17 +147,17 @@ module aximm_over_stream_server
                 if (AXIS_RX_TREADY && AXIS_RX_TVALID) begin
                     
                     // If it's a read-request, start an AXI read
-                    if (AXIS_RX_TDATA[PF_TYPE*32 +:32] == MT_READ_REQ) begin
-                        amci_raddr     <= AXIS_RX_TDATA[PF_ADRL*32 +:64];
+                    if (AXIS_RX_TDATA[MF_TYPE*32 +:32] == MT_READ_REQ) begin
+                        amci_raddr     <= AXIS_RX_TDATA[MF_ADRL*32 +:64];
                         amci_read      <= 1;
                         AXIS_RX_TREADY <= 0;
                         fsm_state      <= FSM_WAIT_FOR_READ;
                     end
 
                     // If it's a write-request, start an AXI write
-                    else if (AXIS_RX_TDATA[PF_TYPE*32 +:32] == MT_WRITE_REQ) begin
-                        amci_waddr     <= AXIS_RX_TDATA[PF_ADRL*32 +:64];
-                        amci_wdata     <= AXIS_RX_TDATA[PF_DATA*32 +:32];
+                    else if (AXIS_RX_TDATA[MF_TYPE*32 +:32] == MT_WRITE_REQ) begin
+                        amci_waddr     <= AXIS_RX_TDATA[MF_ADRL*32 +:64];
+                        amci_wdata     <= AXIS_RX_TDATA[MF_DATA*32 +:32];
                         amci_write     <= 1;
                         AXIS_RX_TREADY <= 0;                            
                         fsm_state      <= FSM_WAIT_FOR_WRITE;
@@ -168,10 +168,10 @@ module aximm_over_stream_server
             // Wait for the AXI-read to complete.  When it does, send a response
             FSM_WAIT_FOR_READ:
                 if (amci_ridle) begin
-                    AXIS_TX_TDATA[PF_TYPE*32 +:32] <= MT_READ_RSP;
-                    AXIS_TX_TDATA[PF_ADRL*32 +:64] <= amci_raddr;
-                    AXIS_TX_TDATA[PF_DATA*32 +:32] <= amci_rdata;
-                    AXIS_TX_TDATA[PF_RESP*32 +:32] <= amci_rresp;
+                    AXIS_TX_TDATA[MF_TYPE*32 +:32] <= MT_READ_RSP;
+                    AXIS_TX_TDATA[MF_ADRL*32 +:64] <= amci_raddr;
+                    AXIS_TX_TDATA[MF_DATA*32 +:32] <= amci_rdata;
+                    AXIS_TX_TDATA[MF_RESP*32 +:32] <= amci_rresp;
                     AXIS_TX_TLAST                  <= 1;
                     AXIS_TX_TVALID                 <= 1;
                     fsm_state                      <= FSM_WAIT_FOR_HANDSHAKE;                    
@@ -180,10 +180,10 @@ module aximm_over_stream_server
             // Wait for the AXI-write to complete.  When it does, send a response
             FSM_WAIT_FOR_WRITE:
                 if (amci_widle) begin
-                    AXIS_TX_TDATA[PF_TYPE*32 +:32] <= MT_WRITE_RSP;
-                    AXIS_TX_TDATA[PF_ADRL*32 +:64] <= amci_waddr;
-                    AXIS_TX_TDATA[PF_DATA*32 +:32] <= amci_wdata;
-                    AXIS_TX_TDATA[PF_RESP*32 +:32] <= amci_wresp;
+                    AXIS_TX_TDATA[MF_TYPE*32 +:32] <= MT_WRITE_RSP;
+                    AXIS_TX_TDATA[MF_ADRL*32 +:64] <= amci_waddr;
+                    AXIS_TX_TDATA[MF_DATA*32 +:32] <= amci_wdata;
+                    AXIS_TX_TDATA[MF_RESP*32 +:32] <= amci_wresp;
                     AXIS_TX_TLAST                  <= 1;
                     AXIS_TX_TVALID                 <= 1;
                     fsm_state                      <= FSM_WAIT_FOR_HANDSHAKE;                    

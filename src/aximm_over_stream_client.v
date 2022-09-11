@@ -164,12 +164,12 @@ module aximm_over_stream_client #
     localparam MT_READ_RSP  = 3;
     localparam MT_WRITE_RSP = 4;
 
-    // The fields in a packet
-    localparam PF_TYPE = 0;  // Packet type
-    localparam PF_ADRL = 1;  // Low word of address
-    localparam PF_ADRH = 2;  // High word of address
-    localparam PF_DATA = 3;  // Read or write data
-    localparam PF_RESP = 4;  // AXI_RRESP or AXI_BRESP
+    // Mesage fields
+    localparam MF_TYPE = 0;  // Message type
+    localparam MF_ADRL = 1;  // Low word of address
+    localparam MF_ADRH = 2;  // High word of address
+    localparam MF_DATA = 3;  // Read or write data
+    localparam MF_RESP = 4;  // AXI_RRESP or AXI_BRESP
 
     // These fields get filled in when a response message is received
     reg[31:0] axi_rdata;
@@ -274,15 +274,15 @@ module aximm_over_stream_client #
     
             if (AXIS_RX_TREADY && AXIS_RX_TVALID) begin
                             
-                if (AXIS_RX_TDATA[PF_TYPE*32 +:32] == MT_READ_RSP) begin
-                    axi_rdata     <= AXIS_RX_TDATA[PF_DATA*32 +:32];
-                    axi_rresp     <= AXIS_RX_TDATA[PF_RESP*32 +:32];
+                if (AXIS_RX_TDATA[MF_TYPE*32 +:32] == MT_READ_RSP) begin
+                    axi_rdata     <= AXIS_RX_TDATA[MF_DATA*32 +:32];
+                    axi_rresp     <= AXIS_RX_TDATA[MF_RESP*32 +:32];
                     rcvd_read_rsp <= rcvd_read_rsp + 1;
                 end
 
                         
-                else if (AXIS_RX_TDATA[PF_TYPE*32 +:32] == MT_WRITE_RSP) begin
-                    axi_wresp      <= AXIS_RX_TDATA[PF_RESP*32 +:32];
+                else if (AXIS_RX_TDATA[MF_TYPE*32 +:32] == MT_WRITE_RSP) begin
+                    axi_wresp      <= AXIS_RX_TDATA[MF_RESP*32 +:32];
                     rcvd_write_rsp <= rcvd_write_rsp + 1;
                 end
             end
@@ -358,9 +358,9 @@ module aximm_over_stream_client #
  
                 // If we're writing to a valid data register, send the write-request packet
                 else if (reg_windex >= 64 && reg_windex < (64 + VECTOR_COUNT)) begin
-                    write_req_msg[PF_TYPE*32 +:32] <= MT_WRITE_REQ;
-                    write_req_msg[PF_ADRL*32 +:64] <= vector[reg_windex];
-                    write_req_msg[PF_DATA*32 +:32] <= ashi_wdata;
+                    write_req_msg[MF_TYPE*32 +:32] <= MT_WRITE_REQ;
+                    write_req_msg[MF_ADRL*32 +:64] <= vector[reg_windex];
+                    write_req_msg[MF_DATA*32 +:32] <= ashi_wdata;
                     prior_write_rsp                <= rcvd_write_rsp;
                     send_write_req                 <= send_write_req + 1;
                     slv_write_state                <= 2;
@@ -450,9 +450,9 @@ module aximm_over_stream_client #
 
                 // If we're reading from a valid data register, go do that
                 else if (reg_rindex >= 64 && reg_rindex < (64 + VECTOR_COUNT)) begin
-                    read_req_msg[PF_TYPE*32 +:32] <= MT_READ_REQ;
-                    read_req_msg[PF_ADRL*32 +:64] <= vector[vector_rindex];
-                    read_req_msg[PF_DATA*32 +:32] <= 0;
+                    read_req_msg[MF_TYPE*32 +:32] <= MT_READ_REQ;
+                    read_req_msg[MF_ADRL*32 +:64] <= vector[vector_rindex];
+                    read_req_msg[MF_DATA*32 +:32] <= 0;
                     prior_read_rsp                <= rcvd_read_rsp;
                     send_read_req                 <= send_read_req + 1;
                     slv_read_state                <= 2;
