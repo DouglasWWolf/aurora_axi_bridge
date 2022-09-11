@@ -120,8 +120,3 @@ pagesize -pg 1 -db -bbox -sgen -120 0 1680 490
    "textcolor_comment_2":""
 }
 0
-{
-   "/ecd_board/aurora_lite/comment_41":"comment_0",
-   "/ecd_board/aximm_stream_server/comment_43":"comment_2",
-   "/ecd_board/demonstration_slave/comment_42":"comment_1"
-}
