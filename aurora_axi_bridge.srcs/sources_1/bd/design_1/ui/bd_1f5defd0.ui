@@ -51,7 +51,7 @@ In a real Aurora, the GT_SERIAL_<RX|TX> lines
 are multi-gigabit tranceivers.   Here, they are
 AXI streams. ",
    "comment_10":"When the 'aximm_stream_client' on the 
-other board is the object of AXI read/
+other board is the target of AXI read/
 write transactions, those AXI transactions
 are actually carried out here, by the 
 'aximm_stream_server'",
@@ -61,7 +61,7 @@ by two wholly independent heirarchies, connected only by QSFP lines.
 In a design using real QSFP28 hardware, the QSFP_<RX|TX> lines are a physical
 cable.   In this example design, they are a pair of AXI Stream interfaces.
 
-In this demonstration, the clock and reset lines of both boards is supplied from a
+In this demonstration, the clock and reset lines of both boards are supplied from a
 common set of signals.  In a real design, clock and reset would of course come
 from the appropriate pins on the individual boards
 ",
@@ -108,7 +108,7 @@ In a real Aurora, the GT_SERIAL_<RX|TX> lines
 are multi-gigabit tranceivers.   Here, they are
 AXI streams. ",
    "comment_9":"iface comment",
-   "commentid":"comment_0|comment_1|comment_2|comment_3|comment_4|comment_5|comment_6|comment_7|comment_8|comment_9|comment_10|comment_10|comment_10|comment_10|comment_10|comment_10|comment_10|comment_10|comment_10|comment_10|comment_11|comment_10|comment_10|comment_10|",
+   "commentid":"comment_0|comment_1|comment_2|comment_3|comment_4|comment_5|comment_6|comment_7|comment_8|comment_9|comment_10|comment_10|comment_10|comment_10|comment_10|comment_10|comment_10|comment_10|comment_10|comment_10|comment_11|comment_10|comment_10|comment_10|comment_10|comment_10|comment_10|",
    "fillcolor_comment_0":"",
    "fillcolor_comment_1":"",
    "fillcolor_comment_10":"",
@@ -204,7 +204,7 @@ pagesize -pg 1 -db -bbox -sgen -120 0 820 260
    "textcolor_comment_9":""
 }
 {
-   """""""""""""""""""""""""""""""""""da_axi4_cnt""""""""""""""""""""""""""""""""""":"4"
+   """"""""""""""""""""""""""""""""""""da_axi4_cnt"""""""""""""""""""""""""""""""""""":"4"
 }
 {
    "/comment_0":"comment_8",
@@ -220,15 +220,18 @@ pagesize -pg 1 -db -bbox -sgen -120 0 820 260
    "/ecd_board/aurora_lite/comment_29":"comment_10",
    "/ecd_board/aurora_lite/comment_31":"comment_10",
    "/ecd_board/aurora_lite/comment_34":"comment_10",
+   "/ecd_board/aurora_lite/comment_38":"comment_10",
    "/ecd_board/aximm_stream_server/comment_2":"comment_10",
    "/ecd_board/aximm_stream_server/comment_33":"comment_10",
    "/ecd_board/aximm_stream_server/comment_36":"comment_10",
+   "/ecd_board/aximm_stream_server/comment_40":"comment_10",
    "/ecd_board/comment_7":"comment_7",
    "/ecd_board/demonstration_slave/comment_1":"comment_10",
    "/ecd_board/demonstration_slave/comment_28":"comment_10",
    "/ecd_board/demonstration_slave/comment_30":"comment_10",
    "/ecd_board/demonstration_slave/comment_32":"comment_10",
    "/ecd_board/demonstration_slave/comment_35":"comment_10",
+   "/ecd_board/demonstration_slave/comment_39":"comment_10",
    "/global_clock/comment_37":"comment_11",
    "/sidewinder_board/aurora_lite/comment_12":"comment_0",
    "/sidewinder_board/comment_10":"comment_3",

@@ -44,8 +44,8 @@ preplace cgraphic comment_0 place top -172 -169 textcolor 4 linecolor 3 linewidt
 levelinfo -pg 1 0 180 500 850 1130 1500 1700
 pagesize -pg 1 -db -bbox -sgen -130 0 1820 510
 ",
-   "No Loops_ScaleFactor":"1.0",
-   "No Loops_TopLeft":"-389,-424",
+   "No Loops_ScaleFactor":"0.729938",
+   "No Loops_TopLeft":"-125,-253",
    "comment_0":"This 'aurora_lite' simulates a XIlinx Aurora IP
 core.   It contains the same basic signals that
 an Aurora does, and with the same names.
@@ -121,7 +121,7 @@ pagesize -pg 1 -db -bbox -sgen -120 0 1680 490
 }
 0
 {
-   "/ecd_board/aurora_lite/comment_38":"comment_0",
-   "/ecd_board/aximm_stream_server/comment_40":"comment_2",
-   "/ecd_board/demonstration_slave/comment_39":"comment_1"
+   "/ecd_board/aurora_lite/comment_41":"comment_0",
+   "/ecd_board/aximm_stream_server/comment_43":"comment_2",
+   "/ecd_board/demonstration_slave/comment_42":"comment_1"
 }
