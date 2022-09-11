@@ -21,11 +21,11 @@
         "aurora_lite": {
           "aurora_lite_core": ""
         },
-        "aximm_stream_client": "",
         "system_interconnect": {
           "s00_couplers": {}
         },
-        "reset_inverter": ""
+        "reset_inverter": "",
+        "aximm_stream_client": ""
       },
       "global_clock": "",
       "ecd_board": {
@@ -659,7 +659,17 @@
                     }
                   },
                   "UART_INT": {
-                    "direction": "I"
+                    "direction": "I",
+                    "parameters": {
+                      "SENSITIVITY": {
+                        "value": "EDGE_RISING",
+                        "value_src": "const_prop"
+                      },
+                      "PortWidth": {
+                        "value": "1",
+                        "value_src": "default_prop"
+                      }
+                    }
                   }
                 },
                 "addressing": {
@@ -1062,6 +1072,188 @@
               }
             }
           },
+          "system_interconnect": {
+            "vlnv": "xilinx.com:ip:axi_interconnect:2.1",
+            "xci_path": "ip/design_1_axi_interconnect_0_1/design_1_axi_interconnect_0_1.xci",
+            "inst_hier_path": "sidewinder_board/system_interconnect",
+            "xci_name": "design_1_axi_interconnect_0_1",
+            "parameters": {
+              "NUM_MI": {
+                "value": "1"
+              }
+            },
+            "interface_ports": {
+              "S00_AXI": {
+                "mode": "Slave",
+                "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
+                "vlnv": "xilinx.com:interface:aximm_rtl:1.0"
+              },
+              "M00_AXI": {
+                "mode": "Master",
+                "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
+                "vlnv": "xilinx.com:interface:aximm_rtl:1.0"
+              }
+            },
+            "ports": {
+              "ACLK": {
+                "type": "clk",
+                "direction": "I",
+                "parameters": {
+                  "ASSOCIATED_RESET": {
+                    "value": "ARESETN"
+                  }
+                }
+              },
+              "ARESETN": {
+                "type": "rst",
+                "direction": "I"
+              },
+              "S00_ACLK": {
+                "type": "clk",
+                "direction": "I",
+                "parameters": {
+                  "ASSOCIATED_BUSIF": {
+                    "value": "S00_AXI"
+                  },
+                  "ASSOCIATED_RESET": {
+                    "value": "S00_ARESETN"
+                  }
+                }
+              },
+              "S00_ARESETN": {
+                "type": "rst",
+                "direction": "I"
+              },
+              "M00_ACLK": {
+                "type": "clk",
+                "direction": "I",
+                "parameters": {
+                  "ASSOCIATED_BUSIF": {
+                    "value": "M00_AXI"
+                  },
+                  "ASSOCIATED_RESET": {
+                    "value": "M00_ARESETN"
+                  }
+                }
+              },
+              "M00_ARESETN": {
+                "type": "rst",
+                "direction": "I"
+              }
+            },
+            "components": {
+              "s00_couplers": {
+                "interface_ports": {
+                  "M_AXI": {
+                    "mode": "Master",
+                    "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
+                    "vlnv": "xilinx.com:interface:aximm_rtl:1.0"
+                  },
+                  "S_AXI": {
+                    "mode": "Slave",
+                    "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
+                    "vlnv": "xilinx.com:interface:aximm_rtl:1.0"
+                  }
+                },
+                "ports": {
+                  "M_ACLK": {
+                    "type": "clk",
+                    "direction": "I",
+                    "parameters": {
+                      "ASSOCIATED_BUSIF": {
+                        "value": "M_AXI"
+                      },
+                      "ASSOCIATED_RESET": {
+                        "value": "M_ARESETN"
+                      }
+                    }
+                  },
+                  "M_ARESETN": {
+                    "type": "rst",
+                    "direction": "I"
+                  },
+                  "S_ACLK": {
+                    "type": "clk",
+                    "direction": "I",
+                    "parameters": {
+                      "ASSOCIATED_BUSIF": {
+                        "value": "S_AXI"
+                      },
+                      "ASSOCIATED_RESET": {
+                        "value": "S_ARESETN"
+                      }
+                    }
+                  },
+                  "S_ARESETN": {
+                    "type": "rst",
+                    "direction": "I"
+                  }
+                },
+                "interface_nets": {
+                  "s00_couplers_to_s00_couplers": {
+                    "interface_ports": [
+                      "S_AXI",
+                      "M_AXI"
+                    ]
+                  }
+                }
+              }
+            },
+            "interface_nets": {
+              "s00_couplers_to_system_interconnect": {
+                "interface_ports": [
+                  "M00_AXI",
+                  "s00_couplers/M_AXI"
+                ]
+              },
+              "system_interconnect_to_s00_couplers": {
+                "interface_ports": [
+                  "S00_AXI",
+                  "s00_couplers/S_AXI"
+                ]
+              }
+            },
+            "nets": {
+              "S00_ACLK_1": {
+                "ports": [
+                  "S00_ACLK",
+                  "s00_couplers/S_ACLK"
+                ]
+              },
+              "S00_ARESETN_1": {
+                "ports": [
+                  "S00_ARESETN",
+                  "s00_couplers/S_ARESETN"
+                ]
+              },
+              "system_interconnect_ACLK_net": {
+                "ports": [
+                  "M00_ACLK",
+                  "s00_couplers/M_ACLK"
+                ]
+              },
+              "system_interconnect_ARESETN_net": {
+                "ports": [
+                  "M00_ARESETN",
+                  "s00_couplers/M_ARESETN"
+                ]
+              }
+            }
+          },
+          "reset_inverter": {
+            "vlnv": "xilinx.com:ip:util_vector_logic:2.0",
+            "xci_name": "design_1_util_vector_logic_0_1",
+            "xci_path": "ip/design_1_util_vector_logic_0_1/design_1_util_vector_logic_0_1.xci",
+            "inst_hier_path": "sidewinder_board/reset_inverter",
+            "parameters": {
+              "C_OPERATION": {
+                "value": "not"
+              },
+              "C_SIZE": {
+                "value": "1"
+              }
+            }
+          },
           "aximm_stream_client": {
             "vlnv": "xilinx.com:module_ref:aximm_over_stream_client:1.0",
             "xci_name": "design_1_aximm_over_stream_cl_0_0",
@@ -1411,188 +1603,6 @@
                     "value_src": "constant"
                   }
                 }
-              }
-            }
-          },
-          "system_interconnect": {
-            "vlnv": "xilinx.com:ip:axi_interconnect:2.1",
-            "xci_path": "ip/design_1_axi_interconnect_0_1/design_1_axi_interconnect_0_1.xci",
-            "inst_hier_path": "sidewinder_board/system_interconnect",
-            "xci_name": "design_1_axi_interconnect_0_1",
-            "parameters": {
-              "NUM_MI": {
-                "value": "1"
-              }
-            },
-            "interface_ports": {
-              "S00_AXI": {
-                "mode": "Slave",
-                "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
-                "vlnv": "xilinx.com:interface:aximm_rtl:1.0"
-              },
-              "M00_AXI": {
-                "mode": "Master",
-                "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
-                "vlnv": "xilinx.com:interface:aximm_rtl:1.0"
-              }
-            },
-            "ports": {
-              "ACLK": {
-                "type": "clk",
-                "direction": "I",
-                "parameters": {
-                  "ASSOCIATED_RESET": {
-                    "value": "ARESETN"
-                  }
-                }
-              },
-              "ARESETN": {
-                "type": "rst",
-                "direction": "I"
-              },
-              "S00_ACLK": {
-                "type": "clk",
-                "direction": "I",
-                "parameters": {
-                  "ASSOCIATED_BUSIF": {
-                    "value": "S00_AXI"
-                  },
-                  "ASSOCIATED_RESET": {
-                    "value": "S00_ARESETN"
-                  }
-                }
-              },
-              "S00_ARESETN": {
-                "type": "rst",
-                "direction": "I"
-              },
-              "M00_ACLK": {
-                "type": "clk",
-                "direction": "I",
-                "parameters": {
-                  "ASSOCIATED_BUSIF": {
-                    "value": "M00_AXI"
-                  },
-                  "ASSOCIATED_RESET": {
-                    "value": "M00_ARESETN"
-                  }
-                }
-              },
-              "M00_ARESETN": {
-                "type": "rst",
-                "direction": "I"
-              }
-            },
-            "components": {
-              "s00_couplers": {
-                "interface_ports": {
-                  "M_AXI": {
-                    "mode": "Master",
-                    "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
-                    "vlnv": "xilinx.com:interface:aximm_rtl:1.0"
-                  },
-                  "S_AXI": {
-                    "mode": "Slave",
-                    "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
-                    "vlnv": "xilinx.com:interface:aximm_rtl:1.0"
-                  }
-                },
-                "ports": {
-                  "M_ACLK": {
-                    "type": "clk",
-                    "direction": "I",
-                    "parameters": {
-                      "ASSOCIATED_BUSIF": {
-                        "value": "M_AXI"
-                      },
-                      "ASSOCIATED_RESET": {
-                        "value": "M_ARESETN"
-                      }
-                    }
-                  },
-                  "M_ARESETN": {
-                    "type": "rst",
-                    "direction": "I"
-                  },
-                  "S_ACLK": {
-                    "type": "clk",
-                    "direction": "I",
-                    "parameters": {
-                      "ASSOCIATED_BUSIF": {
-                        "value": "S_AXI"
-                      },
-                      "ASSOCIATED_RESET": {
-                        "value": "S_ARESETN"
-                      }
-                    }
-                  },
-                  "S_ARESETN": {
-                    "type": "rst",
-                    "direction": "I"
-                  }
-                },
-                "interface_nets": {
-                  "s00_couplers_to_s00_couplers": {
-                    "interface_ports": [
-                      "S_AXI",
-                      "M_AXI"
-                    ]
-                  }
-                }
-              }
-            },
-            "interface_nets": {
-              "s00_couplers_to_system_interconnect": {
-                "interface_ports": [
-                  "M00_AXI",
-                  "s00_couplers/M_AXI"
-                ]
-              },
-              "system_interconnect_to_s00_couplers": {
-                "interface_ports": [
-                  "S00_AXI",
-                  "s00_couplers/S_AXI"
-                ]
-              }
-            },
-            "nets": {
-              "S00_ACLK_1": {
-                "ports": [
-                  "S00_ACLK",
-                  "s00_couplers/S_ACLK"
-                ]
-              },
-              "S00_ARESETN_1": {
-                "ports": [
-                  "S00_ARESETN",
-                  "s00_couplers/S_ARESETN"
-                ]
-              },
-              "system_interconnect_ACLK_net": {
-                "ports": [
-                  "M00_ACLK",
-                  "s00_couplers/M_ACLK"
-                ]
-              },
-              "system_interconnect_ARESETN_net": {
-                "ports": [
-                  "M00_ARESETN",
-                  "s00_couplers/M_ARESETN"
-                ]
-              }
-            }
-          },
-          "reset_inverter": {
-            "vlnv": "xilinx.com:ip:util_vector_logic:2.0",
-            "xci_name": "design_1_util_vector_logic_0_1",
-            "xci_path": "ip/design_1_util_vector_logic_0_1/design_1_util_vector_logic_0_1.xci",
-            "inst_hier_path": "sidewinder_board/reset_inverter",
-            "parameters": {
-              "C_OPERATION": {
-                "value": "not"
-              },
-              "C_SIZE": {
-                "value": "1"
               }
             }
           }
@@ -2956,6 +2966,9 @@
       }
     },
     "comments": {
+      "/sidewinder_board": {
+        "comment_24": "The 'aximm_stream_client' is an \nAXI4-Lite slave device.  AXI read\nand write transactions to its \nregisters are seamlessly carried\nout on the remote system"
+      },
       "/ecd_board/aurora_lite": {
         "comment_13": "This 'aurora_lite' simulates a XIlinx Aurora IP\ncore.   It contains the same basic signals that\nan Aurora does, and with the same names.\n\nIn a real Aurora, the GT_SERIAL_<RX|TX> lines\nare multi-gigabit tranceivers.   Here, they are\nAXI streams. ",
         "comment_0": "This 'aurora_lite' simulates a XIlinx Aurora IP\ncore.   It contains the same basic signals that\nan Aurora does, and with the same names.\n\nIn a real Aurora, the GT_SERIAL_<RX|TX> lines\nare multi-gigabit tranceivers.   Here, they are\nAXI streams. ",
@@ -2969,14 +2982,16 @@
         "comment_31": "This 'aurora_lite' simulates a XIlinx Aurora IP\ncore.   It contains the same basic signals that\nan Aurora does, and with the same names.\n\nIn a real Aurora, the GT_SERIAL_<RX|TX> lines\nare multi-gigabit tranceivers.   Here, they are\nAXI streams. ",
         "comment_34": "This 'aurora_lite' simulates a XIlinx Aurora IP\ncore.   It contains the same basic signals that\nan Aurora does, and with the same names.\n\nIn a real Aurora, the GT_SERIAL_<RX|TX> lines\nare multi-gigabit tranceivers.   Here, they are\nAXI streams. ",
         "comment_38": "This 'aurora_lite' simulates a XIlinx Aurora IP\ncore.   It contains the same basic signals that\nan Aurora does, and with the same names.\n\nIn a real Aurora, the GT_SERIAL_<RX|TX> lines\nare multi-gigabit tranceivers.   Here, they are\nAXI streams. ",
-        "comment_41": "This 'aurora_lite' simulates a XIlinx Aurora IP\ncore.   It contains the same basic signals that\nan Aurora does, and with the same names.\n\nIn a real Aurora, the GT_SERIAL_<RX|TX> lines\nare multi-gigabit tranceivers.   Here, they are\nAXI streams. "
+        "comment_41": "This 'aurora_lite' simulates a XIlinx Aurora IP\ncore.   It contains the same basic signals that\nan Aurora does, and with the same names.\n\nIn a real Aurora, the GT_SERIAL_<RX|TX> lines\nare multi-gigabit tranceivers.   Here, they are\nAXI streams. ",
+        "comment_44": "This 'aurora_lite' simulates a XIlinx Aurora IP\ncore.   It contains the same basic signals that\nan Aurora does, and with the same names.\n\nIn a real Aurora, the GT_SERIAL_<RX|TX> lines\nare multi-gigabit tranceivers.   Here, they are\nAXI streams. "
       },
       "/ecd_board/aximm_stream_server": {
         "comment_33": "When the 'aximm_stream_client' on the \nother board is the object of AXI read/\nwrite transactions, those AXI transactions\nare actually carried out here, by the \n'aximm_stream_server'",
         "comment_2": "When the 'aximm_stream_client' on the \nother board is the object of AXI read/\nwrite transactions, those AXI transactions\nare actually carried out here, by the \n'aximm_stream_server'",
         "comment_36": "When the 'aximm_stream_client' on the \nother board is the object of AXI read/\nwrite transactions, those AXI transactions\nare actually carried out here, by the \n'aximm_stream_server'",
         "comment_40": "When the 'aximm_stream_client' on the \nother board is the target of AXI read/\nwrite transactions, those AXI transactions\nare actually carried out here, by the \n'aximm_stream_server'",
-        "comment_43": "When the 'aximm_stream_client' on the \nother board is the target of AXI read/\nwrite transactions, those AXI transactions\nare actually carried out here, by the \n'aximm_stream_server'"
+        "comment_43": "When the 'aximm_stream_client' on the \nother board is the target of AXI read/\nwrite transactions, those AXI transactions\nare actually carried out here, by the \n'aximm_stream_server'",
+        "comment_46": "When the 'aximm_stream_client' on the \nother board is the target of AXI read/\nwrite transactions, those AXI transactions\nare actually carried out here, by the \n'aximm_stream_server'"
       },
       "/ecd_board/demonstration_slave": {
         "comment_28": "In this demonstration, the\n'demonstration_slave' serves\nas the target for AXI read/write\ntransactions originating from\nthe other system",
@@ -2985,7 +3000,8 @@
         "comment_1": "In this demonstration, the\n'demonstration_slave' serves\nas the target for AXI read/write\ntransactions originating from\nthe other system",
         "comment_35": "In this demonstration, the\n'demonstration_slave' serves\nas the target for AXI read/write\ntransactions originating from\nthe other system",
         "comment_39": "In this demonstration, the\n'demonstration_slave' serves\nas the target for AXI read/write\ntransactions originating from\nthe other system",
-        "comment_42": "In this demonstration, the\n'demonstration_slave' serves\nas the target for AXI read/write\ntransactions originating from\nthe other system"
+        "comment_42": "In this demonstration, the\n'demonstration_slave' serves\nas the target for AXI read/write\ntransactions originating from\nthe other system",
+        "comment_45": "In this demonstration, the\n'demonstration_slave' serves\nas the target for AXI read/write\ntransactions originating from\nthe other system"
       },
       "/global_clock": {
         "comment_37": "In this example design we have a Sidewinder board and an ECD board represented\nby two wholly independent heirarchies, connected only by QSFP lines.\n\nIn a design using real QSFP28 hardware, the QSFP_<RX|TX> lines are a physical\ncable.   In this example design, they are a pair of AXI Stream interfaces.\n\nIn this demonstration, the clock and reset lines of both boards are supplied from a\ncommon set of signals.  In a real design, clock and reset would of course come\nfrom the appropriate pins on the individual boards\n"
@@ -2993,10 +3009,6 @@
       "/sidewinder_board/aurora_lite": {
         "comment_0": "This 'aurora_lite' simulates a XIlinx Aurora IP\ncore.   It contains the same basic signals that\nan Aurora does, and with the same names.\n\nIn a real Aurora, the GT_SERIAL_<RX|TX> lines\nare multi-gigabit tranceivers.   Here, they are\nAXI streams. ",
         "comment_12": "Enter Comments here"
-      },
-      "/sidewinder_board/aximm_stream_client": {
-        "comment_16": "The 'aximm_stream_client' serves\nas a gateway to the AXI bus of the\nother system. (i.e., \"ecd_board\").\n\nReading or writing the AXI4-Lite \nregisters of this IP core will seamlessly\nperform the appropriate AXI read or\nwrite on the remote system.",
-        "comment_24": "The 'aximm_stream_client' is an \nAXI4-Lite slave device.  AXI read\nand write transactions to its \nregisters are seamlessly carried\nout on the remote system"
       },
       "/sidewinder_board/host_pc_interface": {
         "comment_14": "In this example design, the host\nPC interface into our AXI bus is via\na UART.   In a more complex design\nthe host PC would interface to our\nAXI bus via a PCIe bridge",

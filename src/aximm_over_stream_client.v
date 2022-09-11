@@ -8,13 +8,61 @@
 // 08-Sep-22  DWW  1000  Initial creation
 //===================================================================================================
 
+/*
+    Overview:
+
+    This module has up to 64 64-bit address vectors, and those addresses are mapped into 
+    the first 128 words of address space like this:
+
+        Vector #0 high-bits = BaseAddr + 0x00
+        Vector #0 low-bits  = BaseAddr + 0x04
+        Vector #1 high-bits = BaseAddr + 0x08
+        Vector #1 low-bits  = BaseAddr + 0x0C
+                 (etc)
+
+    Data registers start at BaseAddress + 0x100, like this:
+        Data Register #0 = BaseAddr + 0x100
+        Data Register #1 = BaseAddr + 0x104
+        Data Register #2 = BaseAddr + 0x108
+                 (etc)
+    
+    Reading or writing a data register performs a read or write of the corresponding vector
+    address on the remote system
+
+*/
+
+
 `define M_AXI_ADDR_WIDTH 32
 `define M_AXI_DATA_WIDTH 32
 `define AXIS_DATA_WIDTH 256
 
+
+//===================================================================================================
+// If you change the number of vectors (i.e., VECTOR_COUNT), don't forget to update the number of
+// default parameters in the module parameter list, and to update the table of  'assign vector[nn]'
+// statements !!!!
+//===================================================================================================
+`define VECTOR_COUNT 16
+//===================================================================================================
+
 module aximm_over_stream_client #
 (
-    parameter VECTOR_COUNT = 16    
+    parameter VECTOR_00 = 64'h4000,
+    parameter VECTOR_01 = 64'h4008,
+    parameter VECTOR_02 = 64'h0,
+    parameter VECTOR_03 = 64'h0,
+    parameter VECTOR_04 = 64'h0,
+    parameter VECTOR_05 = 64'h0,
+    parameter VECTOR_06 = 64'h0,
+    parameter VECTOR_07 = 64'h0,
+    parameter VECTOR_08 = 64'h0,
+    parameter VECTOR_09 = 64'h0,
+    parameter VECTOR_10 = 64'h0,
+    parameter VECTOR_11 = 64'h0,
+    parameter VECTOR_12 = 64'h0,
+    parameter VECTOR_13 = 64'h0,
+    parameter VECTOR_14 = 64'h0,
+    parameter VECTOR_15 = 64'h0
 )
 (
     input clk, resetn,
@@ -73,7 +121,7 @@ module aximm_over_stream_client #
     localparam M_AXI_ADDR_WIDTH = `M_AXI_ADDR_WIDTH;
     localparam M_AXI_DATA_WIDTH = `M_AXI_DATA_WIDTH;
     localparam AXIS_DATA_WIDTH  = `AXIS_DATA_WIDTH;
-
+    localparam VECTOR_COUNT     = `VECTOR_COUNT;
 
     //===============================================================================================
     // We'll communicate with the AXI4-Lite Slave core with these signals.
@@ -121,9 +169,6 @@ module aximm_over_stream_client #
     localparam PF_DATA = 3;  // Read or write data
     localparam PF_RESP = 4;  // AXI_RRESP or AXI_BRESP
 
-    // We're going to store a 64-bit address for each vector we support
-    reg[63:0] vector[0:VECTOR_COUNT-1];
-
     // These fields get filled in when a response message is received
     reg[31:0] axi_rdata;
     reg[ 1:0] axi_rresp, axi_wresp;
@@ -137,7 +182,32 @@ module aximm_over_stream_client #
     // The notification of a received read or write response is signaled by one of these changing
     reg[1:0] rcvd_write_rsp, rcvd_read_rsp;
 
-    
+    // We're going to store a 64-bit address for each vector we support
+    reg[63:0] vector_reg[0:VECTOR_COUNT-1];
+
+    // There will be a '1' in each bit for which a vector has been defined at runtime
+    reg[VECTOR_COUNT-1:0] valid_vector_flags;
+
+    // These are the address vectors that will be used for an remote AXI read or write
+    wire[63:0] vector[0:VECTOR_COUNT-1];
+    assign vector[00] = valid_vector_flags[00] ? vector_reg[00] : VECTOR_00;
+    assign vector[01] = valid_vector_flags[01] ? vector_reg[01] : VECTOR_01;
+    assign vector[02] = valid_vector_flags[02] ? vector_reg[02] : VECTOR_02;
+    assign vector[03] = valid_vector_flags[03] ? vector_reg[03] : VECTOR_03;
+    assign vector[04] = valid_vector_flags[04] ? vector_reg[04] : VECTOR_04;
+    assign vector[05] = valid_vector_flags[05] ? vector_reg[05] : VECTOR_05;
+    assign vector[06] = valid_vector_flags[06] ? vector_reg[06] : VECTOR_06;
+    assign vector[07] = valid_vector_flags[07] ? vector_reg[07] : VECTOR_07;
+    assign vector[08] = valid_vector_flags[08] ? vector_reg[08] : VECTOR_08;
+    assign vector[09] = valid_vector_flags[09] ? vector_reg[09] : VECTOR_09;
+    assign vector[10] = valid_vector_flags[10] ? vector_reg[10] : VECTOR_10;
+    assign vector[11] = valid_vector_flags[11] ? vector_reg[11] : VECTOR_11;
+    assign vector[12] = valid_vector_flags[12] ? vector_reg[12] : VECTOR_12;
+    assign vector[13] = valid_vector_flags[13] ? vector_reg[13] : VECTOR_13;
+    assign vector[14] = valid_vector_flags[14] ? vector_reg[14] : VECTOR_14;
+    assign vector[15] = valid_vector_flags[15] ? vector_reg[15] : VECTOR_15;
+
+
     //===============================================================================================
     // State machine that transmits read or write requests across the stream interface
     //===============================================================================================
@@ -219,16 +289,13 @@ module aximm_over_stream_client #
     //===============================================================================================
 
 
-
-
-
     //===============================================================================================
     // State machine that handles write requests to the slave
     //===============================================================================================
     
     // This is the index of the 32-bit register being written to
     wire[7:0] reg_windex = (ashi_waddr & ADDR_MASK) >> 2;
-    
+
     // This is the index of active address vector
     reg[7:0] vector_windex;
     
@@ -239,8 +306,9 @@ module aximm_over_stream_client #
 
         // If we're in reset, initialize important registers
         if (resetn == 0) begin
-            slv_write_state <= 0;
-            send_write_req  <= 0;
+            slv_write_state    <= 0;
+            send_write_req     <= 0;
+            valid_vector_flags <= 0;
 
         // If we're not in reset, and a write-request has occured...        
         end else case (slv_write_state)
@@ -278,17 +346,18 @@ module aximm_over_stream_client #
             1:  // If we're writing to a valid vector register, make it so
                 // and go back to idle mode
                 if (reg_windex < VECTOR_COUNT * 2) begin
+                    valid_vector_flags[vector_windex] = 1;
                     if (reg_windex & 1) 
-                        vector[vector_windex][31:00] <= ashi_wdata;
+                        vector_reg[vector_windex][31:00] <= ashi_wdata;
                     else
-                        vector[vector_windex][63:32] <= ashi_wdata;
+                        vector_reg[vector_windex][63:32] <= ashi_wdata;
                     slv_write_state <= 0;
                 end
  
                 // If we're writing to a valid data register, send the write-request packet
                 else if (reg_windex >= 64 && reg_windex < (64 + VECTOR_COUNT)) begin
                     write_req_msg[PF_TYPE*32 +:32] <= PKT_TYPE_WRITE;
-                    write_req_msg[PF_ADRL*32 +:64] <= vector[vector_windex];
+                    write_req_msg[PF_ADRL*32 +:64] <= vector[reg_windex];
                     write_req_msg[PF_DATA*32 +:32] <= ashi_wdata;
                     prior_write_rsp                <= rcvd_write_rsp;
                     send_write_req                 <= send_write_req + 1;

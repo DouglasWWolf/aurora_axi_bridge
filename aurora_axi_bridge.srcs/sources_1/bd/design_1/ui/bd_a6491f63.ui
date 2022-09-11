@@ -16,9 +16,9 @@ preplace port port-id_qsfp_clock -pg 1 -lvl 0 -x 0 -y 430 -defaultsOSRD
 preplace inst clock_and_reset -pg 1 -lvl 1 -x 180 -y 190 -swap {0 1 4 3 2 5} -defaultsOSRD -pinDir ext_clock left -pinY ext_clock 0L -pinDir sysclock right -pinY sysclock 0R -pinBusDir interconnect_aresetn right -pinBusY interconnect_aresetn 40R -pinDir ext_resetn left -pinY ext_resetn 20L -pinBusDir peripheral_aresetn right -pinBusY peripheral_aresetn 20R -pinBusDir peripheral_reset right -pinBusY peripheral_reset 70R
 preplace inst host_pc_interface -pg 1 -lvl 1 -x 180 -y 60 -swap {0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 24 23} -defaultsOSRD -pinDir UART left -pinY UART 0L -pinDir M_AXI right -pinY M_AXI 0R -pinDir s_axi_aclk right -pinY s_axi_aclk 40R -pinDir s_axi_aresetn right -pinY s_axi_aresetn 20R
 preplace inst aurora_lite -pg 1 -lvl 4 -x 1100 -y 290 -swap {5 1 2 3 4 0 6 7 8 9 10 11 12 13 14 15 16 17 18 19 21 22 20 23} -defaultsOSRD -pinDir GT_SERIAL_RX right -pinY GT_SERIAL_RX 20R -pinDir GT_SERIAL_TX right -pinY GT_SERIAL_TX 0R -pinDir USER_DATA_M_AXIS_RX left -pinY USER_DATA_M_AXIS_RX 0L -pinDir USER_DATA_S_AXIS_TX left -pinY USER_DATA_S_AXIS_TX 20L -pinDir qsfp_clock left -pinY qsfp_clock 140L -pinDir reset_pb left -pinY reset_pb 160L -pinDir sys_reset_out left -pinY sys_reset_out 80L -pinDir user_clk_out left -pinY user_clk_out 180L
-preplace inst aximm_stream_client -pg 1 -lvl 3 -x 790 -y 230 -defaultsOSRD -pinDir AXIS_RX right -pinY AXIS_RX 60R -pinDir AXIS_TX right -pinY AXIS_TX 80R -pinDir S_AXI left -pinY S_AXI 0L -pinDir clk left -pinY clk 20L -pinDir resetn left -pinY resetn 80L
 preplace inst system_interconnect -pg 1 -lvl 2 -x 510 -y 60 -swap {0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 43 41 42 44 45} -defaultsOSRD -pinDir S00_AXI left -pinY S00_AXI 0L -pinDir M00_AXI right -pinY M00_AXI 170R -pinDir ACLK left -pinY ACLK 40L -pinDir ARESETN left -pinY ARESETN 170L -pinDir S00_ACLK left -pinY S00_ACLK 60L -pinDir S00_ARESETN left -pinY S00_ARESETN 80L -pinDir M00_ACLK right -pinY M00_ACLK 190R -pinDir M00_ARESETN left -pinY M00_ARESETN 190L
 preplace inst reset_inverter -pg 1 -lvl 1 -x 180 -y 350 -swap {1 0} -defaultsOSRD -pinBusDir Op1 right -pinBusY Op1 20R -pinBusDir Res right -pinBusY Res 0R
+preplace inst aximm_stream_client -pg 1 -lvl 3 -x 790 -y 230 -defaultsOSRD -pinDir AXIS_RX right -pinY AXIS_RX 60R -pinDir AXIS_TX right -pinY AXIS_TX 80R -pinDir S_AXI left -pinY S_AXI 0L -pinDir clk left -pinY clk 20L -pinDir resetn left -pinY resetn 80L
 preplace netloc CLK100MHZ_1 1 0 1 NJ 190
 preplace netloc CPU_RESETN_1 1 0 1 NJ 210
 preplace netloc GT_DIFF_REFCLK1_0_1 1 0 4 NJ 430 NJ 430 NJ 430 NJ
@@ -107,10 +107,8 @@ pagesize -pg 1 -db -bbox -sgen -120 0 1430 570
    "linecolor_comment_1":"",
    "linecolor_comment_2":"",
    "linktoobj_comment_0":"/sidewinder_board/aurora_lite",
-   "linktoobj_comment_1":"/sidewinder_board/aximm_stream_client",
    "linktoobj_comment_2":"/sidewinder_board/host_pc_interface",
    "linktotype_comment_0":"bd_cell",
-   "linktotype_comment_1":"bd_cell",
    "linktotype_comment_2":"bd_cell",
    "textcolor_comment_0":"",
    "textcolor_comment_1":"",
@@ -118,12 +116,12 @@ pagesize -pg 1 -db -bbox -sgen -120 0 1430 570
 }
 0
 {
+   "/comment_24":"comment_1",
    "/sidewinder_board/aurora_lite/comment_0":"comment_0",
    "/sidewinder_board/aurora_lite/comment_18":"comment_0",
    "/sidewinder_board/aurora_lite/comment_23":"comment_0",
    "/sidewinder_board/aximm_stream_client/comment_16":"comment_2",
    "/sidewinder_board/aximm_stream_client/comment_21":"comment_2",
-   "/sidewinder_board/aximm_stream_client/comment_24":"comment_1",
    "/sidewinder_board/host_pc_interface/comment_14":"comment_1",
    "/sidewinder_board/host_pc_interface/comment_19":"comment_1",
    "/sidewinder_board/host_pc_interface/comment_25":"comment_2"

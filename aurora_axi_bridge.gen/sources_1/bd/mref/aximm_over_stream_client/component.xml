@@ -319,7 +319,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>03ebf085</spirit:value>
+            <spirit:value>c5d848ec</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -332,7 +332,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>03ebf085</spirit:value>
+            <spirit:value>c5d848ec</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -811,10 +811,85 @@
       </spirit:port>
     </spirit:ports>
     <spirit:modelParameters>
-      <spirit:modelParameter xsi:type="spirit:nameValueTypeType" spirit:dataType="integer">
-        <spirit:name>VECTOR_COUNT</spirit:name>
-        <spirit:displayName>Vector Count</spirit:displayName>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.VECTOR_COUNT">16</spirit:value>
+      <spirit:modelParameter xsi:type="spirit:nameValueTypeType" spirit:dataType="std_logic_vector">
+        <spirit:name>VECTOR_00</spirit:name>
+        <spirit:displayName>Vector 00</spirit:displayName>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.VECTOR_00" spirit:bitStringLength="64">0x0000000000004000</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="std_logic_vector">
+        <spirit:name>VECTOR_01</spirit:name>
+        <spirit:displayName>Vector 01</spirit:displayName>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.VECTOR_01" spirit:bitStringLength="64">0x0000000000004008</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="std_logic_vector">
+        <spirit:name>VECTOR_02</spirit:name>
+        <spirit:displayName>Vector 02</spirit:displayName>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.VECTOR_02" spirit:bitStringLength="64">0x0000000000000000</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="std_logic_vector">
+        <spirit:name>VECTOR_03</spirit:name>
+        <spirit:displayName>Vector 03</spirit:displayName>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.VECTOR_03" spirit:bitStringLength="64">0x0000000000000000</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="std_logic_vector">
+        <spirit:name>VECTOR_04</spirit:name>
+        <spirit:displayName>Vector 04</spirit:displayName>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.VECTOR_04" spirit:bitStringLength="64">0x0000000000000000</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="std_logic_vector">
+        <spirit:name>VECTOR_05</spirit:name>
+        <spirit:displayName>Vector 05</spirit:displayName>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.VECTOR_05" spirit:bitStringLength="64">0x0000000000000000</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="std_logic_vector">
+        <spirit:name>VECTOR_06</spirit:name>
+        <spirit:displayName>Vector 06</spirit:displayName>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.VECTOR_06" spirit:bitStringLength="64">0x0000000000000000</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="std_logic_vector">
+        <spirit:name>VECTOR_07</spirit:name>
+        <spirit:displayName>Vector 07</spirit:displayName>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.VECTOR_07" spirit:bitStringLength="64">0x0000000000000000</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="std_logic_vector">
+        <spirit:name>VECTOR_08</spirit:name>
+        <spirit:displayName>Vector 08</spirit:displayName>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.VECTOR_08" spirit:bitStringLength="64">0x0000000000000000</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="std_logic_vector">
+        <spirit:name>VECTOR_09</spirit:name>
+        <spirit:displayName>Vector 09</spirit:displayName>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.VECTOR_09" spirit:bitStringLength="64">0x0000000000000000</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="std_logic_vector">
+        <spirit:name>VECTOR_10</spirit:name>
+        <spirit:displayName>Vector 10</spirit:displayName>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.VECTOR_10" spirit:bitStringLength="64">0x0000000000000000</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="std_logic_vector">
+        <spirit:name>VECTOR_11</spirit:name>
+        <spirit:displayName>Vector 11</spirit:displayName>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.VECTOR_11" spirit:bitStringLength="64">0x0000000000000000</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="std_logic_vector">
+        <spirit:name>VECTOR_12</spirit:name>
+        <spirit:displayName>Vector 12</spirit:displayName>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.VECTOR_12" spirit:bitStringLength="64">0x0000000000000000</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="std_logic_vector">
+        <spirit:name>VECTOR_13</spirit:name>
+        <spirit:displayName>Vector 13</spirit:displayName>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.VECTOR_13" spirit:bitStringLength="64">0x0000000000000000</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="std_logic_vector">
+        <spirit:name>VECTOR_14</spirit:name>
+        <spirit:displayName>Vector 14</spirit:displayName>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.VECTOR_14" spirit:bitStringLength="64">0x0000000000000000</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="std_logic_vector">
+        <spirit:name>VECTOR_15</spirit:name>
+        <spirit:displayName>Vector 15</spirit:displayName>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.VECTOR_15" spirit:bitStringLength="64">0x0000000000000000</spirit:value>
       </spirit:modelParameter>
     </spirit:modelParameters>
   </spirit:model>
@@ -831,7 +906,7 @@
       <spirit:file>
         <spirit:name>xgui/aximm_over_stream_client_v1_0.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_d09bea53</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_7c4b84f9</spirit:userFileType>
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
@@ -839,9 +914,84 @@
   <spirit:description>xilinx.com:module_ref:aximm_over_stream_client:1.0</spirit:description>
   <spirit:parameters>
     <spirit:parameter>
-      <spirit:name>VECTOR_COUNT</spirit:name>
-      <spirit:displayName>Vector Count</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.VECTOR_COUNT">16</spirit:value>
+      <spirit:name>VECTOR_00</spirit:name>
+      <spirit:displayName>Vector 00</spirit:displayName>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.VECTOR_00" spirit:bitStringLength="64">0x0000000000004000</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>VECTOR_01</spirit:name>
+      <spirit:displayName>Vector 01</spirit:displayName>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.VECTOR_01" spirit:bitStringLength="64">0x0000000000004008</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>VECTOR_02</spirit:name>
+      <spirit:displayName>Vector 02</spirit:displayName>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.VECTOR_02" spirit:bitStringLength="64">0x0000000000000000</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>VECTOR_03</spirit:name>
+      <spirit:displayName>Vector 03</spirit:displayName>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.VECTOR_03" spirit:bitStringLength="64">0x0000000000000000</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>VECTOR_04</spirit:name>
+      <spirit:displayName>Vector 04</spirit:displayName>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.VECTOR_04" spirit:bitStringLength="64">0x0000000000000000</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>VECTOR_05</spirit:name>
+      <spirit:displayName>Vector 05</spirit:displayName>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.VECTOR_05" spirit:bitStringLength="64">0x0000000000000000</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>VECTOR_06</spirit:name>
+      <spirit:displayName>Vector 06</spirit:displayName>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.VECTOR_06" spirit:bitStringLength="64">0x0000000000000000</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>VECTOR_07</spirit:name>
+      <spirit:displayName>Vector 07</spirit:displayName>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.VECTOR_07" spirit:bitStringLength="64">0x0000000000000000</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>VECTOR_08</spirit:name>
+      <spirit:displayName>Vector 08</spirit:displayName>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.VECTOR_08" spirit:bitStringLength="64">0x0000000000000000</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>VECTOR_09</spirit:name>
+      <spirit:displayName>Vector 09</spirit:displayName>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.VECTOR_09" spirit:bitStringLength="64">0x0000000000000000</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>VECTOR_10</spirit:name>
+      <spirit:displayName>Vector 10</spirit:displayName>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.VECTOR_10" spirit:bitStringLength="64">0x0000000000000000</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>VECTOR_11</spirit:name>
+      <spirit:displayName>Vector 11</spirit:displayName>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.VECTOR_11" spirit:bitStringLength="64">0x0000000000000000</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>VECTOR_12</spirit:name>
+      <spirit:displayName>Vector 12</spirit:displayName>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.VECTOR_12" spirit:bitStringLength="64">0x0000000000000000</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>VECTOR_13</spirit:name>
+      <spirit:displayName>Vector 13</spirit:displayName>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.VECTOR_13" spirit:bitStringLength="64">0x0000000000000000</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>VECTOR_14</spirit:name>
+      <spirit:displayName>Vector 14</spirit:displayName>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.VECTOR_14" spirit:bitStringLength="64">0x0000000000000000</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>VECTOR_15</spirit:name>
+      <spirit:displayName>Vector 15</spirit:displayName>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.VECTOR_15" spirit:bitStringLength="64">0x0000000000000000</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>Component_Name</spirit:name>
@@ -863,7 +1013,7 @@
         <xilinx:designToolContext>IPI</xilinx:designToolContext>
       </xilinx:designToolContexts>
       <xilinx:coreRevision>1</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2022-09-10T12:39:04Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2022-09-11T04:16:38Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2021.1</xilinx:xilinxVersion>
