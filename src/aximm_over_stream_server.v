@@ -94,9 +94,11 @@ module aximm_over_stream_server
     //===============================================================================================
 
    
-    // Packet types
-    localparam PKT_TYPE_READ  = 1;
-    localparam PKT_TYPE_WRITE = 2;
+    // Message types
+    localparam MT_READ_REQ  = 1;
+    localparam MT_WRITE_REQ = 2;
+    localparam MT_READ_RSP  = 3;
+    localparam MT_WRITE_RSP = 4;
 
     // The fields of a packet
     localparam PF_TYPE = 0;  // Packet type
@@ -145,7 +147,7 @@ module aximm_over_stream_server
                 if (AXIS_RX_TREADY && AXIS_RX_TVALID) begin
                     
                     // If it's a read-request, start an AXI read
-                    if (AXIS_RX_TDATA[PF_TYPE*32 +:32] == PKT_TYPE_READ) begin
+                    if (AXIS_RX_TDATA[PF_TYPE*32 +:32] == MT_READ_REQ) begin
                         amci_raddr     <= AXIS_RX_TDATA[PF_ADRL*32 +:64];
                         amci_read      <= 1;
                         AXIS_RX_TREADY <= 0;
@@ -153,7 +155,7 @@ module aximm_over_stream_server
                     end
 
                     // If it's a write-request, start an AXI write
-                    else if (AXIS_RX_TDATA[PF_TYPE*32 +:32] == PKT_TYPE_WRITE) begin
+                    else if (AXIS_RX_TDATA[PF_TYPE*32 +:32] == MT_WRITE_REQ) begin
                         amci_waddr     <= AXIS_RX_TDATA[PF_ADRL*32 +:64];
                         amci_wdata     <= AXIS_RX_TDATA[PF_DATA*32 +:32];
                         amci_write     <= 1;
@@ -166,7 +168,7 @@ module aximm_over_stream_server
             // Wait for the AXI-read to complete.  When it does, send a response
             FSM_WAIT_FOR_READ:
                 if (amci_ridle) begin
-                    AXIS_TX_TDATA[PF_TYPE*32 +:32] <= PKT_TYPE_READ;
+                    AXIS_TX_TDATA[PF_TYPE*32 +:32] <= MT_READ_RSP;
                     AXIS_TX_TDATA[PF_ADRL*32 +:64] <= amci_raddr;
                     AXIS_TX_TDATA[PF_DATA*32 +:32] <= amci_rdata;
                     AXIS_TX_TDATA[PF_RESP*32 +:32] <= amci_rresp;
@@ -178,7 +180,7 @@ module aximm_over_stream_server
             // Wait for the AXI-write to complete.  When it does, send a response
             FSM_WAIT_FOR_WRITE:
                 if (amci_widle) begin
-                    AXIS_TX_TDATA[PF_TYPE*32 +:32] <= PKT_TYPE_WRITE;
+                    AXIS_TX_TDATA[PF_TYPE*32 +:32] <= MT_WRITE_RSP;
                     AXIS_TX_TDATA[PF_ADRL*32 +:64] <= amci_waddr;
                     AXIS_TX_TDATA[PF_DATA*32 +:32] <= amci_wdata;
                     AXIS_TX_TDATA[PF_RESP*32 +:32] <= amci_wresp;

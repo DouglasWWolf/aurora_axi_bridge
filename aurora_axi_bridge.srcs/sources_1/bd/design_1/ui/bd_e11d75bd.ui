@@ -121,7 +121,7 @@ pagesize -pg 1 -db -bbox -sgen -120 0 1680 490
 }
 0
 {
-   "/ecd_board/aurora_lite/comment_48":"comment_0",
-   "/ecd_board/aximm_stream_server/comment_50":"comment_2",
-   "/ecd_board/demonstration_slave/comment_49":"comment_1"
+   "/ecd_board/aurora_lite/comment_54":"comment_0",
+   "/ecd_board/aximm_stream_server/comment_56":"comment_2",
+   "/ecd_board/demonstration_slave/comment_55":"comment_1"
 }

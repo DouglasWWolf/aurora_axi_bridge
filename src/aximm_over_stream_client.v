@@ -158,9 +158,11 @@ module aximm_over_stream_client #
     // Our slave's register set will occupy 9 bits of address space
     localparam ADDR_MASK = 9'h1FF;
     
-    // Packet types
-    localparam PKT_TYPE_READ  = 1;
-    localparam PKT_TYPE_WRITE = 2;
+    // Message types
+    localparam MT_READ_REQ  = 1;
+    localparam MT_WRITE_REQ = 2;
+    localparam MT_READ_RSP  = 3;
+    localparam MT_WRITE_RSP = 4;
 
     // The fields in a packet
     localparam PF_TYPE = 0;  // Packet type
@@ -272,14 +274,14 @@ module aximm_over_stream_client #
     
             if (AXIS_RX_TREADY && AXIS_RX_TVALID) begin
                             
-                if (AXIS_RX_TDATA[PF_TYPE*32 +:32] == PKT_TYPE_READ) begin
+                if (AXIS_RX_TDATA[PF_TYPE*32 +:32] == MT_READ_RSP) begin
                     axi_rdata     <= AXIS_RX_TDATA[PF_DATA*32 +:32];
                     axi_rresp     <= AXIS_RX_TDATA[PF_RESP*32 +:32];
                     rcvd_read_rsp <= rcvd_read_rsp + 1;
                 end
 
                         
-                else if (AXIS_RX_TDATA[PF_TYPE*32 +:32] == PKT_TYPE_WRITE) begin
+                else if (AXIS_RX_TDATA[PF_TYPE*32 +:32] == MT_WRITE_RSP) begin
                     axi_wresp      <= AXIS_RX_TDATA[PF_RESP*32 +:32];
                     rcvd_write_rsp <= rcvd_write_rsp + 1;
                 end
@@ -356,7 +358,7 @@ module aximm_over_stream_client #
  
                 // If we're writing to a valid data register, send the write-request packet
                 else if (reg_windex >= 64 && reg_windex < (64 + VECTOR_COUNT)) begin
-                    write_req_msg[PF_TYPE*32 +:32] <= PKT_TYPE_WRITE;
+                    write_req_msg[PF_TYPE*32 +:32] <= MT_WRITE_REQ;
                     write_req_msg[PF_ADRL*32 +:64] <= vector[reg_windex];
                     write_req_msg[PF_DATA*32 +:32] <= ashi_wdata;
                     prior_write_rsp                <= rcvd_write_rsp;
@@ -448,7 +450,7 @@ module aximm_over_stream_client #
 
                 // If we're reading from a valid data register, go do that
                 else if (reg_rindex >= 64 && reg_rindex < (64 + VECTOR_COUNT)) begin
-                    read_req_msg[PF_TYPE*32 +:32] <= PKT_TYPE_READ;
+                    read_req_msg[PF_TYPE*32 +:32] <= MT_READ_REQ;
                     read_req_msg[PF_ADRL*32 +:64] <= vector[vector_rindex];
                     read_req_msg[PF_DATA*32 +:32] <= 0;
                     prior_read_rsp                <= rcvd_read_rsp;

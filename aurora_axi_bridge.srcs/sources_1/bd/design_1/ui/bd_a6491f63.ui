@@ -36,15 +36,14 @@ preplace netloc aurora_lite_USER_DATA_M_AXIS_RX 1 3 1 NJ 290
 preplace netloc host_interface_UART 1 0 1 N 60
 preplace netloc host_pc_interface_M_AXI 1 1 1 N 60
 preplace netloc system_interconnect_M00_AXI 1 2 1 N 230
-preplace cgraphic comment_3 place top -65 -135 textcolor 4 linecolor 3 linewidth 2
+preplace cgraphic comment_3 place top -15 -140 textcolor 4 linecolor 3 linewidth 2
 preplace cgraphic comment_2 place top -134 -129 textcolor 4 linecolor 3 linewidth 2
-preplace cgraphic comment_1 place top 943 -423 textcolor 4 linecolor 3 linewidth 2
-preplace cgraphic comment_0 place bot -155 28 textcolor 4 linecolor 3 linewidth 2
+preplace cgraphic comment_0 place bot -131 24 textcolor 4 linecolor 3 linewidth 2
 levelinfo -pg 1 0 180 510 790 1100 1300
 pagesize -pg 1 -db -bbox -sgen -130 -60 1420 660
 ",
    "No Loops_ScaleFactor":"0.9075",
-   "No Loops_TopLeft":"-138,-531",
+   "No Loops_TopLeft":"-138,-120",
    "comment_0":"This 'aurora_lite' simulates a XIlinx Aurora IP
 core.   It contains the same basic signals that
 an Aurora does, and with the same names.
@@ -119,14 +118,7 @@ pagesize -pg 1 -db -bbox -sgen -120 0 1430 570
 }
 0
 {
-   "/comment_24",
-   "/sidewinder_board/aurora_lite/comment_0":"comment_0",
-   "/sidewinder_board/aurora_lite/comment_18":"comment_0",
-   "/sidewinder_board/aurora_lite/comment_23":"comment_0",
-   "/sidewinder_board/aximm_stream_client/comment_16":"comment_2",
-   "/sidewinder_board/aximm_stream_client/comment_21":"comment_2",
-   "/sidewinder_board/aximm_stream_client/comment_47":"comment_3",
-   "/sidewinder_board/host_pc_interface/comment_14":"comment_1",
-   "/sidewinder_board/host_pc_interface/comment_19":"comment_1",
-   "/sidewinder_board/host_pc_interface/comment_25":"comment_2"
+   "/sidewinder_board/aurora_lite/comment_51":"comment_0",
+   "/sidewinder_board/aximm_stream_client/comment_53":"comment_3",
+   "/sidewinder_board/host_pc_interface/comment_52":"comment_2"
 }
