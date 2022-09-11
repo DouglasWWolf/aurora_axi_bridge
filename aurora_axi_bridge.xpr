@@ -140,11 +140,8 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_clk_wiz_0_1/design_1_clk_wiz_0_1.xci">
-          <Proxy FileSetName="design_1_clk_wiz_0_1"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_proc_sys_reset_0_1/design_1_proc_sys_reset_0_1.xci">
-          <Proxy FileSetName="design_1_proc_sys_reset_0_1"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_aximm_over_stream_se_0_0/design_1_aximm_over_stream_se_0_0.xci">
+          <Proxy FileSetName="design_1_aximm_over_stream_se_0_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_aurora_lite_0_8/design_1_aurora_lite_0_8.xci">
           <Proxy FileSetName="design_1_aurora_lite_0_8"/>
@@ -152,17 +149,20 @@
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_axi_uart_bridge_0_0/design_1_axi_uart_bridge_0_0.xci">
           <Proxy FileSetName="design_1_axi_uart_bridge_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_aurora_lite_0_9/design_1_aurora_lite_0_9.xci">
-          <Proxy FileSetName="design_1_aurora_lite_0_9"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_util_vector_logic_0_0/design_1_util_vector_logic_0_0.xci">
-          <Proxy FileSetName="design_1_util_vector_logic_0_0"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_clk_wiz_0_1/design_1_clk_wiz_0_1.xci">
+          <Proxy FileSetName="design_1_clk_wiz_0_1"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_axi_gpio_0_0/design_1_axi_gpio_0_0.xci">
           <Proxy FileSetName="design_1_axi_gpio_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_aximm_over_stream_se_0_0/design_1_aximm_over_stream_se_0_0.xci">
-          <Proxy FileSetName="design_1_aximm_over_stream_se_0_0"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_util_vector_logic_0_0/design_1_util_vector_logic_0_0.xci">
+          <Proxy FileSetName="design_1_util_vector_logic_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_aurora_lite_0_9/design_1_aurora_lite_0_9.xci">
+          <Proxy FileSetName="design_1_aurora_lite_0_9"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_proc_sys_reset_0_1/design_1_proc_sys_reset_0_1.xci">
+          <Proxy FileSetName="design_1_proc_sys_reset_0_1"/>
         </CompFileExtendedInfo>
       </File>
       <File Path="$PGENDIR/sources_1/bd/design_1/hdl/design_1_wrapper.v">
@@ -362,9 +362,7 @@
     </Run>
     <Run Id="design_1_axi_uart_bridge_0_0_synth_1" Type="Ft3:Synth" SrcSet="design_1_axi_uart_bridge_0_0" Part="xc7a100tcsg324-1" ConstrsSet="design_1_axi_uart_bridge_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_1_axi_uart_bridge_0_0_synth_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021"/>
         <Step Id="synth_design"/>
       </Strategy>
       <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2021"/>
@@ -509,9 +507,7 @@
     </Run>
     <Run Id="design_1_axi_uart_bridge_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-1" ConstrsSet="design_1_axi_uart_bridge_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_1_axi_uart_bridge_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_1_axi_uart_bridge_0_0_impl_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2021">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2021"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>

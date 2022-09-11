@@ -2966,9 +2966,6 @@
       }
     },
     "comments": {
-      "/sidewinder_board": {
-        "comment_24": "The 'aximm_stream_client' is an \nAXI4-Lite slave device.  AXI read\nand write transactions to its \nregisters are seamlessly carried\nout on the remote system"
-      },
       "/ecd_board/aurora_lite": {
         "comment_13": "This 'aurora_lite' simulates a XIlinx Aurora IP\ncore.   It contains the same basic signals that\nan Aurora does, and with the same names.\n\nIn a real Aurora, the GT_SERIAL_<RX|TX> lines\nare multi-gigabit tranceivers.   Here, they are\nAXI streams. ",
         "comment_0": "This 'aurora_lite' simulates a XIlinx Aurora IP\ncore.   It contains the same basic signals that\nan Aurora does, and with the same names.\n\nIn a real Aurora, the GT_SERIAL_<RX|TX> lines\nare multi-gigabit tranceivers.   Here, they are\nAXI streams. ",
@@ -2983,7 +2980,8 @@
         "comment_34": "This 'aurora_lite' simulates a XIlinx Aurora IP\ncore.   It contains the same basic signals that\nan Aurora does, and with the same names.\n\nIn a real Aurora, the GT_SERIAL_<RX|TX> lines\nare multi-gigabit tranceivers.   Here, they are\nAXI streams. ",
         "comment_38": "This 'aurora_lite' simulates a XIlinx Aurora IP\ncore.   It contains the same basic signals that\nan Aurora does, and with the same names.\n\nIn a real Aurora, the GT_SERIAL_<RX|TX> lines\nare multi-gigabit tranceivers.   Here, they are\nAXI streams. ",
         "comment_41": "This 'aurora_lite' simulates a XIlinx Aurora IP\ncore.   It contains the same basic signals that\nan Aurora does, and with the same names.\n\nIn a real Aurora, the GT_SERIAL_<RX|TX> lines\nare multi-gigabit tranceivers.   Here, they are\nAXI streams. ",
-        "comment_44": "This 'aurora_lite' simulates a XIlinx Aurora IP\ncore.   It contains the same basic signals that\nan Aurora does, and with the same names.\n\nIn a real Aurora, the GT_SERIAL_<RX|TX> lines\nare multi-gigabit tranceivers.   Here, they are\nAXI streams. "
+        "comment_44": "This 'aurora_lite' simulates a XIlinx Aurora IP\ncore.   It contains the same basic signals that\nan Aurora does, and with the same names.\n\nIn a real Aurora, the GT_SERIAL_<RX|TX> lines\nare multi-gigabit tranceivers.   Here, they are\nAXI streams. ",
+        "comment_48": "This 'aurora_lite' simulates a XIlinx Aurora IP\ncore.   It contains the same basic signals that\nan Aurora does, and with the same names.\n\nIn a real Aurora, the GT_SERIAL_<RX|TX> lines\nare multi-gigabit tranceivers.   Here, they are\nAXI streams. "
       },
       "/ecd_board/aximm_stream_server": {
         "comment_33": "When the 'aximm_stream_client' on the \nother board is the object of AXI read/\nwrite transactions, those AXI transactions\nare actually carried out here, by the \n'aximm_stream_server'",
@@ -2991,7 +2989,8 @@
         "comment_36": "When the 'aximm_stream_client' on the \nother board is the object of AXI read/\nwrite transactions, those AXI transactions\nare actually carried out here, by the \n'aximm_stream_server'",
         "comment_40": "When the 'aximm_stream_client' on the \nother board is the target of AXI read/\nwrite transactions, those AXI transactions\nare actually carried out here, by the \n'aximm_stream_server'",
         "comment_43": "When the 'aximm_stream_client' on the \nother board is the target of AXI read/\nwrite transactions, those AXI transactions\nare actually carried out here, by the \n'aximm_stream_server'",
-        "comment_46": "When the 'aximm_stream_client' on the \nother board is the target of AXI read/\nwrite transactions, those AXI transactions\nare actually carried out here, by the \n'aximm_stream_server'"
+        "comment_46": "When the 'aximm_stream_client' on the \nother board is the target of AXI read/\nwrite transactions, those AXI transactions\nare actually carried out here, by the \n'aximm_stream_server'",
+        "comment_50": "When the 'aximm_stream_client' on the \nother board is the target of AXI read/\nwrite transactions, those AXI transactions\nare actually carried out here, by the \n'aximm_stream_server'"
       },
       "/ecd_board/demonstration_slave": {
         "comment_28": "In this demonstration, the\n'demonstration_slave' serves\nas the target for AXI read/write\ntransactions originating from\nthe other system",
@@ -3001,14 +3000,21 @@
         "comment_35": "In this demonstration, the\n'demonstration_slave' serves\nas the target for AXI read/write\ntransactions originating from\nthe other system",
         "comment_39": "In this demonstration, the\n'demonstration_slave' serves\nas the target for AXI read/write\ntransactions originating from\nthe other system",
         "comment_42": "In this demonstration, the\n'demonstration_slave' serves\nas the target for AXI read/write\ntransactions originating from\nthe other system",
-        "comment_45": "In this demonstration, the\n'demonstration_slave' serves\nas the target for AXI read/write\ntransactions originating from\nthe other system"
+        "comment_45": "In this demonstration, the\n'demonstration_slave' serves\nas the target for AXI read/write\ntransactions originating from\nthe other system",
+        "comment_49": "In this demonstration, the\n'demonstration_slave' serves\nas the target for AXI read/write\ntransactions originating from\nthe other system"
       },
       "/global_clock": {
         "comment_37": "In this example design we have a Sidewinder board and an ECD board represented\nby two wholly independent heirarchies, connected only by QSFP lines.\n\nIn a design using real QSFP28 hardware, the QSFP_<RX|TX> lines are a physical\ncable.   In this example design, they are a pair of AXI Stream interfaces.\n\nIn this demonstration, the clock and reset lines of both boards are supplied from a\ncommon set of signals.  In a real design, clock and reset would of course come\nfrom the appropriate pins on the individual boards\n"
       },
+      "/sidewinder_board": {
+        "comment_24": "The 'aximm_stream_client' is an \nAXI4-Lite slave device.  AXI read\nand write transactions to its \nregisters are seamlessly carried\nout on the remote system"
+      },
       "/sidewinder_board/aurora_lite": {
         "comment_0": "This 'aurora_lite' simulates a XIlinx Aurora IP\ncore.   It contains the same basic signals that\nan Aurora does, and with the same names.\n\nIn a real Aurora, the GT_SERIAL_<RX|TX> lines\nare multi-gigabit tranceivers.   Here, they are\nAXI streams. ",
         "comment_12": "Enter Comments here"
+      },
+      "/sidewinder_board/aximm_stream_client": {
+        "comment_47": "The 'aximm_stream_client' is an \nAXI4-Lite slave device.  AXI read\nand write transactions to its \nregisters are seamlessly carried\nout on the remote system"
       },
       "/sidewinder_board/host_pc_interface": {
         "comment_14": "In this example design, the host\nPC interface into our AXI bus is via\na UART.   In a more complex design\nthe host PC would interface to our\nAXI bus via a PCIe bridge",

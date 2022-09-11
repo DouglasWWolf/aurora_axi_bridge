@@ -36,14 +36,15 @@ preplace netloc aurora_lite_USER_DATA_M_AXIS_RX 1 3 1 NJ 290
 preplace netloc host_interface_UART 1 0 1 N 60
 preplace netloc host_pc_interface_M_AXI 1 1 1 N 60
 preplace netloc system_interconnect_M00_AXI 1 2 1 N 230
-preplace cgraphic comment_2 place top -134 -140 textcolor 4 linecolor 3 linewidth 2
-preplace cgraphic comment_1 place top -30 -119 textcolor 4 linecolor 3 linewidth 2
+preplace cgraphic comment_3 place top -65 -135 textcolor 4 linecolor 3 linewidth 2
+preplace cgraphic comment_2 place top -134 -129 textcolor 4 linecolor 3 linewidth 2
+preplace cgraphic comment_1 place top 943 -423 textcolor 4 linecolor 3 linewidth 2
 preplace cgraphic comment_0 place bot -155 28 textcolor 4 linecolor 3 linewidth 2
 levelinfo -pg 1 0 180 510 790 1100 1300
 pagesize -pg 1 -db -bbox -sgen -130 -60 1420 660
 ",
    "No Loops_ScaleFactor":"0.9075",
-   "No Loops_TopLeft":"-138,-130",
+   "No Loops_TopLeft":"-138,-531",
    "comment_0":"This 'aurora_lite' simulates a XIlinx Aurora IP
 core.   It contains the same basic signals that
 an Aurora does, and with the same names.
@@ -51,24 +52,24 @@ an Aurora does, and with the same names.
 In a real Aurora, the GT_SERIAL_<RX|TX> lines
 are multi-gigabit tranceivers.   Here, they are
 AXI streams. ",
-   "comment_1":"The 'aximm_stream_client' is an 
-AXI4-Lite slave device.  AXI read
-and write transactions to its 
-registers are seamlessly carried
-out on the remote system",
    "comment_2":"In this example design, the host PC
 interfaces to our AXI bus is via UART.
 
 In a more complex design, the host
 PC interface might be via a PCIe
 bridge",
-   "commentid":"comment_0|comment_1|comment_2|",
+   "comment_3":"The 'aximm_stream_client' is an 
+AXI4-Lite slave device.  AXI read
+and write transactions to its 
+registers are seamlessly carried
+out on the remote system",
+   "commentid":"comment_0|comment_2|comment_3|",
    "fillcolor_comment_0":"",
-   "fillcolor_comment_1":"",
    "fillcolor_comment_2":"",
+   "fillcolor_comment_3":"",
    "font_comment_0":"12",
-   "font_comment_1":"12",
    "font_comment_2":"12",
+   "font_comment_3":"11",
    "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
 #  -string -flagsOSRD
 preplace port UART -pg 1 -lvl 5 -x 1330 -y 180 -defaultsOSRD
@@ -104,24 +105,27 @@ levelinfo -pg 1 0 180 530 810 1120 1330
 pagesize -pg 1 -db -bbox -sgen -120 0 1430 570
 ",
    "linecolor_comment_0":"",
-   "linecolor_comment_1":"",
    "linecolor_comment_2":"",
+   "linecolor_comment_3":"",
    "linktoobj_comment_0":"/sidewinder_board/aurora_lite",
    "linktoobj_comment_2":"/sidewinder_board/host_pc_interface",
+   "linktoobj_comment_3":"/sidewinder_board/aximm_stream_client",
    "linktotype_comment_0":"bd_cell",
    "linktotype_comment_2":"bd_cell",
+   "linktotype_comment_3":"bd_cell",
    "textcolor_comment_0":"",
-   "textcolor_comment_1":"",
-   "textcolor_comment_2":""
+   "textcolor_comment_2":"",
+   "textcolor_comment_3":""
 }
 0
 {
-   "/comment_24":"comment_1",
+   "/comment_24",
    "/sidewinder_board/aurora_lite/comment_0":"comment_0",
    "/sidewinder_board/aurora_lite/comment_18":"comment_0",
    "/sidewinder_board/aurora_lite/comment_23":"comment_0",
    "/sidewinder_board/aximm_stream_client/comment_16":"comment_2",
    "/sidewinder_board/aximm_stream_client/comment_21":"comment_2",
+   "/sidewinder_board/aximm_stream_client/comment_47":"comment_3",
    "/sidewinder_board/host_pc_interface/comment_14":"comment_1",
    "/sidewinder_board/host_pc_interface/comment_19":"comment_1",
    "/sidewinder_board/host_pc_interface/comment_25":"comment_2"
